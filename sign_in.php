@@ -1,4 +1,3 @@
-
  <?php
     include('connection.php');
     if(isset($_POST['signin'])){
@@ -56,23 +55,23 @@
       <a class="navbar-brand"><i>Baker Bakery</i></a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="home.html">Home</a></li>
-        <li><a href="home.html#about">About us</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="index.php#about">About us</a></li>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="shop.html">Shop<span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="shop.html#toast">Toasts</a></li>
-                <li><a href="shop.html#bread">Bread</a></li>
-                <li><a href="shop.html#pastries">Pastries</a></li>
-                <li><a href="shop.html#desserts">Desserts</a></li>
+                <li><a href="shop.php#toast">Toasts</a></li>
+                <li><a href="shop.php#bread">Bread</a></li>
+                <li><a href="shop.php#pastries">Pastries</a></li>
+                <li><a href="shop.php#desserts">Desserts</a></li>
             </ul>
         </li>
-        <li><a href="home.html#contact">Contact us</a></li>
-        <li><a href="review.html">Review</a></li>
-        <li><a href="sign_in.html">Sign-in</a></li>
-        <li><a href="search.html">
+        <li><a href="index.php#contact">Contact us</a></li>
+        <li><a href="review.php">Review</a></li>
+        <li><a href="sign_in.php">Sign-in</a></li>
+        <li><a href="search.php">
               <img src="images/search.png" alt="search" style=" width:20px; height: 20px">
         </a></li>
-        <li><a href="cart.html">
+        <li><a href="cart.php">
               <img src="images/cart.png" alt="search" style=" width:20px; height: 20px">
         </a></li>
     </ul>
@@ -117,7 +116,7 @@
         <p>We also have physical store for you to visit.</p><br>
         <p>Consumer Care Team days are Monday-Friday.</p><br>
         <p>Consumer Care Team times are 7AM - 7PM</p><br>
-        <a href="review.html#faq">FAQ</a>
+        <a href="review.php#faq">FAQ</a>
     </div> 
     <div class="col-sm-4">
       <h3><strong>Shop Location</strong></h3><br>

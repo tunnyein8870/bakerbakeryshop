@@ -48,7 +48,7 @@
             <div id="nevigabar3">
                 <div id="nevigabar31"></div>
                 <div id="nevigabar32"></div>
-                <div id="nevigabar33"><button id="logout">LOGOUT</button></div>
+                <div id="nevigabar33"><button id="logout" onclick="location.href='index.php';">LOGOUT</button></div>
                 
             </div>
             <!-- navigation bar -->

@@ -47,7 +47,7 @@
             <div id="nevigabar3">
                 <div id="nevigabar31"></div>
                 <div id="nevigabar32"></div>
-                <div id="nevigabar33"><button id="logout">LOGOUT</button></div>
+                <div id="nevigabar33"><button id="logout" onclick="location.href='index.php';">LOGOUT</button></div>
                 
             </div>
             <!-- navigation bar -->
@@ -82,30 +82,38 @@
                 </div>
                 <div id="fortab" >
                                     
-                          <label>Order Customer Name</label>
-                          <input type="name" class="form-control" aria-describedby="emailHelp" placeholder="Enter Order Customer Name">
-                        
-                            <label>Product Name</label>
-                            <input type="Pname" class="form-control" aria-describedby="emailHelp" placeholder="Enter Product Name">
-                
-                            <label>Product Quantity</label>
-                            <input type="Quantity" class="form-control" aria-describedby="emailHelp" placeholder="Enter Product Quantity">
-                       
-                            <label>Customer Phone No</label>
-                            <input type="phone" class="form-control" aria-describedby="emailHelp" placeholder="Enter Customer Phone No">
-                        
-                            <label>Customer Address</label>
-                            <input type="address" class="form-control" aria-describedby="emailHelp" placeholder="Enter Customer Address">
-                       
-                            <label>Order Date</label>
-                            <input type="date" class="form-control" aria-describedby="emailHelp" placeholder="Enter Order Date">
-                       
-                        
-                            <label>Product Total Price</label>
-                            <input type="total" class="form-control" aria-describedby="emailHelp" placeholder="Enter Product Total Price">
-                        
+                <form>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Order Customer Name</label>
+                          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Order Customer Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Name</label>
+                            <input type="Pname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Quantity</label>
+                            <input type="Quantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Quantity">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Customer Phone No</label>
+                            <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Phone No">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Customer Address</label>
+                            <input type="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Address">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Order Date</label>
+                            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Order Date">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Total Price</label>
+                            <input type="total" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Total Price">
+                        </div>
                         <button type="insert" class="btn btn-primary">Insert</button>
                         <button type="delete" class="btn btn-primary">Delete</button>
+                </form>
                     
                 </div>
 

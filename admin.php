@@ -115,17 +115,17 @@
                             $sn = $_POST["admName"];
                             include 'connection.php';
                             $sql = "SELECT * From admin where aname='$sn'";
-                            echo "<table class="table">" ;
+                            echo "<table class="table">";
                             echo "<thead>";
                             echo "<tr>";
                             echo "<th scope="col">Name</th>";
                             echo "<th scope="col">Email</th>";
                             echo "<th scope="col">Phone No</th>";
-                            echo "";
-                            echo "";
-                            echo "";
-                            echo "";
-                            echo "";
+                            echo "<th scope="col">Address</th>";
+                            echo "<th scope="col">Action</th>";
+                            echo "</tr>";
+                            echo "</thead>";
+                            echo "<tbody>";
                         }
 
                         ?>

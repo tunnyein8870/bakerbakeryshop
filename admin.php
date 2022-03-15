@@ -48,7 +48,6 @@
                 <div id="nevigabar31"></div>
                 <div id="nevigabar32"></div>
                 <div id="nevigabar33"><button id="logout" onclick="location.href='index.php';">LOGOUT</button></div>
-                
             </div>
             <!-- navigation bar -->
     
@@ -73,9 +72,10 @@
                 </div>
                 <div id="search">
                     <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-outline-primary">search</button>
+                    <input type="text" name="admName" size="20">
+			        <input type="submit" name="Search" value="Search">
                     </div>
+                    
                 </div>
                 <div id="modify">
                     <button id="modifybut" onclick="location.href='adminmod.php';">MODIFY</button>
@@ -92,13 +92,44 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Zoro</td>
-                            <td>Good</td>
-                            <td>5</td>
-                            <td><button id="rem">Remove</button></td>
-                          </tr>
+
+                        <?php
+                        $counter=1;
+                        include "connection.php";
+                        $viewquery = "SELECT * from admin";
+                        foreach ($dbconnection->query($viewquery) as $row) {
+                            $name = $row['aname'];
+                            $email = $row['aemail'];
+                            $address = $row['a_address'];
+                            $phone = $row['aphone_no'];
+
+                            echo"<tr>";
+                            echo"<td> $name </td>";
+                            echo"<td> $email </td>";
+                            echo"<td> $phone </td>";
+                            echo"<td> $address </td>";
+                            echo" </tr>";
+                        }
+
+                        if(isset($_POST["Search"])){
+                            $sn = $_POST["admName"];
+                            include 'connection.php';
+                            $sql = "SELECT * From admin where aname='$sn'";
+                            echo "<table class="table">" ;
+                            echo "<thead>";
+                            echo "<tr>";
+                            echo "<th scope="col">Name</th>";
+                            echo "<th scope="col">Email</th>";
+                            echo "<th scope="col">Phone No</th>";
+                            echo "";
+                            echo "";
+                            echo "";
+                            echo "";
+                            echo "";
+                        }
+
+                        ?>
+
                         </tbody>
                     </table>
                 </div>

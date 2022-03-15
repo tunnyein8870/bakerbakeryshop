@@ -1,0 +1,155 @@
+/*navigation bar*/
+.container-fluid{
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+    background-color:black;
+    border-width: 0;
+    border-bottom-right-radius:7px;
+    border-bottom-left-radius:7px;
+/*      position: fixed;  nav sticky 
+    width: 100%;*/
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+}
+
+.navbar{
+    z-index:9; 
+    border: 0;
+    border-bottom-right-radius:15px !important;
+    border-bottom-left-radius:7px;
+    border-style: solid;
+    border-color: whitesmoke !important;
+}
+
+.dropdown-menu{
+    font-size: 18px !important;
+    text-align: center !important;   
+}
+
+.navbar li {
+    color: whitesmoke;
+    position: relative;
+    text-decoration: none;
+}
+
+.navbar li::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: whitesmoke;
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform .3s ease-in-out;
+}
+
+.navbar li:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.nav a{
+    float: left;
+    display: block;
+    font-size: 22px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.navbar-brand{
+    font-size: 30px !important;
+    font-family: "Times New Roman", Times, serif;
+    color: white !important;
+}
+
+/*shop products*/
+.container{
+    font-family:"Times New Roman", Times, serif;;
+    margin-bottom: 40px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.container hr{
+    border-top: 3px double #5F5346;
+}
+.card{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    float: left;
+    margin-left: 42px;
+    margin-right: 35px;
+    margin-bottom: 30px;
+}
+.card-body{
+    font-size:16px;
+    text-align: center;
+}
+.card-body .btn{
+    width: 150px;
+    background-color: white;
+    color: #6b5756;
+    border-color:#6b5756;
+    margin-bottom: 15px;
+}
+.card-body .btn:hover{
+    background-color:#6b5756;
+    color: white;
+    border-color:#6b5756;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+/*contact us */
+#contact{
+    background-color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    padding-top: 20px;
+}
+
+#contact hr {
+    border-top: 3px double #5F5346;
+}
+
+#contact > h2{
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.row h3{
+    font-family: "Times New Roman", Times, serif;
+    font-weight:bold;
+}
+
+.row p{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}
+.row a{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
+.row a:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.gmap{
+    width: 475px;
+}
+
+
+/*footer*/
+.fhr{
+    border: 0; 
+    height: 1px; 
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0); 
+}

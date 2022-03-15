@@ -1,3 +1,52 @@
+<?php
+    include ('connection.php');
+    if(isset($_POST['insert']))
+    {
+        $signup_sql = "SELECT * FROM admin";
+
+        $signup_result = mysqli_query($dbconnection,$signup_sql);
+        $flag = false;
+            while ($row = mysqli_fetch_assoc($signup_result)){
+                if($row['uemail'] == $_POST['uemail'])
+                {
+                    echo "<script>alert('Email Already Exists... Try Another Email!')</script>";
+                    echo "<script>window.location = 'admin.php'</script>";
+                    !$flag;
+                }
+                else
+                {
+                    $flag;
+                }
+            } // while end
+
+            if(!$flag){ 
+                if($_POST['upassword'] == $_POST['upassword-repeat']){
+                    include('connection.php');
+                    $uname = $_POST['uname'];
+                    $uemail = $_POST['uemail'];
+                    $upassword = $_POST['upassword'];
+                    $ucpassword = $_POST['upassword-repeat'];
+                    $uphone = $_POST['uphone'];
+                    $uaddress = $_POST['uaddress'];
+                   
+                    $sql = "INSERT INTO admin (aname,aemail,a_address,aphone_no,apassword,aconfirm_pass) VALUES ('$uname','$uemail','$uaddress','$uphone','$upassword','$ucpassword')";
+
+                     if(mysqli_query($dbconnection,$sql)){
+                        echo "<script>
+                          alert('Successfully Insert')
+                          </script>";   
+                        echo "<script>window.location = 'admin.php'</script>";
+                     } // check sql            
+                } // check password repreat 
+                else{
+                // check confirm password
+                echo "<script>alert('Password does not match. Please Try Again!')</script>";
+                
+                }
+            }// flag end   
+        }       
+?>
+
 <html>
     <head>
         <title> Vertical Menu </title>
@@ -69,7 +118,7 @@
             <div id="indexbdy3">
 
                 <div id="indtit">
-                    <p>Customer Modification</p>
+                    <p>Admin Modification</p>
                 </div>
                 <div id="search">
                     <div class="input-group">
@@ -81,30 +130,42 @@
                    
                 </div>
                 <div id="fortab">
-                    <form>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Admin Name</label>
-                          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Admin Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Admin Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Admin Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Admin Password</label>
-                            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Admin Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Admin Phone No</label>
-                            <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Admin Phone No">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Admin Address</label>
-                            <input type="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Admin Address">
-                        </div>
-                        <button type="insert" class="btn btn-primary">Insert</button>
-                        <button type="delete" class="btn btn-primary">Delete</button>
-                    </form>
+                <form class="insertform" action="" method="post">
+            
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Admin Name</label>
+              <input class="form-control" type="text" name="uname" placeholder="Enter Admin name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Admin Email</label>
+              <input class="form-control" type="text" name="uemail" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Admin Password</label>
+              <input class="form-control" type="password" name="upassword" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Confirm Password</label>
+              <input class="form-control" type="password" name="upassword-repeat" placeholder="Enter Password (repeat)" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Admin Phone No</label>
+              <input class="form-control" type="text" name="uphone" placeholder="Enter Phone No">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Admin Address</label>
+              <input class="form-control" type="text" name="uaddress" placeholder="Enter Address">
+            </div>
+            
+            <div class="form-group">
+              <button class="btn btn-success btn-block" type="submit" name="insert">Insert</button>
+            </div> 
+            <div class="form-group">
+              <button class="btn btn-success btn-block" type="submit" name="update">Update</button>
+            </div>
+            
+        </form>
                 </div>
 
             </div>
@@ -125,3 +186,4 @@
     </body>
 
 </html>
+

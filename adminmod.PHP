@@ -44,7 +44,7 @@
                 
                 }
             }// flag end   
-        }       
+        }   
 ?>
 
 <html>
@@ -74,7 +74,7 @@
                             <a class ="nav-link" href="admindashboard.php"> DASHBOARD </a>
                             </li>
                             <li class ="nav-item">
-                            <a class ="nav-link" href="review.php"> REVIEWS </a>
+                            <a class ="nav-link" href="admin_review.php"> REVIEWS </a>
                             </li>
                             <li class ="nav-item">
                             <a class ="nav-link" href="products.php"> PRODUCTS </a>
@@ -162,7 +162,7 @@
               <button class="btn btn-success btn-block" type="submit" name="insert">Insert</button>
             </div> 
             <div class="form-group">
-              <button class="btn btn-success btn-block" type="submit" name="update">Update</button>
+              <button class="btn btn-success btn-block" type="submit" name="update" value='update'>Update</button>
             </div>
             
         </form>
@@ -186,4 +186,18 @@
     </body>
 
 </html>
+
+<?php
+    if(isset($_POST["update"])){
+        $admame = $_POST['uname'];
+        $admemail = $_POST['uemail'];
+        $admpassword = $_POST['upassword'];
+        $admcpassword = $_POST['upassword-repeat'];
+        $admphone = $_POST['uphone'];
+        $admaddress = $_POST['uaddress'];
+        include('connection.php');
+        $sql="Update admin Set aname='$upn', aemail='$ub', a_address='$uca', aphone_no=$uin, apassword=$upr, aconfirm_pass='$uim' Where PID=$uid";
+        $dbconnection->exec($sql);
+    }
+?>
 

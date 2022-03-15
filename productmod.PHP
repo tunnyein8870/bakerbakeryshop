@@ -25,7 +25,7 @@
                             <a class ="nav-link" href="admindashboard.php"> DASHBOARD </a>
                             </li>
                             <li class ="nav-item">
-                            <a class ="nav-link" href="review.php"> REVIEWS </a>
+                            <a class ="nav-link" href="admin_review.php"> REVIEWS </a>
                             </li>
                             <li class ="nav-item">
                             <a class ="nav-link" href="products.php"> PRODUCTS </a>

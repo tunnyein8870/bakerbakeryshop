@@ -25,7 +25,7 @@
                             <a class ="nav-link" href="admindashboard.php"> DASHBOARD </a>
                             </li>
                             <li class ="nav-item">
-                            <a class ="nav-link" href="review.php"> REVIEWS </a>
+                            <a class ="nav-link" href="admin_review.php"> REVIEWS </a>
                             </li>
                             <li class ="nav-item">
                             <a class ="nav-link" href="products.php"> PRODUCTS </a>
@@ -110,24 +110,6 @@
                             echo"<td> $address </td>";
                             echo" </tr>";
                         }
-
-                        if(isset($_POST["Search"])){
-                            $sn = $_POST["admName"];
-                            include 'connection.php';
-                            $sql = "SELECT * From admin where aname='$sn'";
-                            echo "<table class="table">";
-                            echo "<thead>";
-                            echo "<tr>";
-                            echo "<th scope="col">Name</th>";
-                            echo "<th scope="col">Email</th>";
-                            echo "<th scope="col">Phone No</th>";
-                            echo "<th scope="col">Address</th>";
-                            echo "<th scope="col">Action</th>";
-                            echo "</tr>";
-                            echo "</thead>";
-                            echo "<tbody>";
-                        }
-
                         ?>
 
                         </tbody>

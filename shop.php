@@ -1,9 +1,14 @@
 <?php
     include ('connection.php');
-    include('header.php')
+    include('header.php');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+<head>
+<title>Baker Bakery Shop Product Page</title>
+<link rel="stylesheet" type="text/css" href="css files/shop.css">
+</head>
 <body>
 <!-- start of shop products -->
 <div class="container">
@@ -32,7 +37,6 @@
     }
 ?>
 </div>
-
 <!-- start shop -> bread product -->
 <div class="container">
   <h2 id="bread" style="font-weight: bold; text-align:center;">Bread Menu of Baker Bakery</h2>

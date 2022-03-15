@@ -34,8 +34,12 @@
         }     
     } 
 ?>
-<?php include('header.php') ?>
+<?php include('header.php'); ?>
 <!DOCTYPE html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css files/sign_in.css">
+  <title>Baker Bakery Sign-In Page</title>
+</head>
 <body>
 <html lang="en">
 <!-- start of sign-in form -->

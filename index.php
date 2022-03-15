@@ -1,6 +1,10 @@
-<?php include('header.php') ?>
+<?php include('header.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="css files/style.css">
+  <title>Baker Bakery Home Page</title>
+</head>
 <body>
 <!-- image slideshow gallery with bootstrap reference by
 https://www.w3schools.com/bootstrap/bootstrap_carousel.asp -->

@@ -49,6 +49,10 @@
 <?php include('header.php') ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="css files/sign_up.css">
+  <title>Baker Bakery Sign-Up Page</title>
+</head>
 <body>
 <!-- start of sign-in form -->
 <div class="register-photo">

@@ -72,9 +72,8 @@
                     <p>Shop Product</p>
                 </div>
                 <div id="search">
-                    <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-outline-primary">search</button>
+                <div class="input-group">
+			        <input type="submit" onclick="location.href='productdelete.php';" value="Delete">
                     </div>
                 </div>
                 <div id="modify">
@@ -85,20 +84,30 @@
                         <thead>
                           <tr>
                             <th scope="col">Name</th>
-                            <th scope="col">Quantity</th>
+                            <th scope="col">Categories</th>
                             <th scope="col">Price</th>
                             <th scope="col">Ingredients</th>
-                            <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Zoro</td>
-                            <td>Good</td>
-                            <td>5</td>
-                            <td><button id="rem">Remove</button></td>
-                          </tr>
+                        <?php
+                        $counter=1;
+                        include "connection.php";
+                        $viewquery = "SELECT * from product";
+                        foreach ($dbconnection->query($viewquery) as $row) {
+                            $name = $row['pname'];
+                            $categories = $row['categories'];
+                            $ingredient = $row['pingredient'];
+                            $price = $row['pprice'];
+
+                            echo"<tr>";
+                            echo"<td> $name </td>";
+                            echo"<td> $categories </td>";
+                            echo"<td> $price </td>";
+                            echo"<td> $ingredient </td>";
+                            echo" </tr>";
+                        }
+                        ?>
                         </tbody>
                     </table>
                 </div>

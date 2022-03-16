@@ -48,6 +48,7 @@
                 <div id="nevigabar31"></div>
                 <div id="nevigabar32"></div>
                 <div id="nevigabar33"><button id="logout" onclick="location.href='index.php';">LOGOUT</button></div>
+                
             </div>
             <!-- navigation bar -->
     
@@ -68,64 +69,61 @@
             <div id="indexbdy3">
 
                 <div id="indtit">
-                    <p>Admin List</p>
+                    <p>User Modification</p>
                 </div>
                 <div id="search">
                 <form method="post" action="">
-			        Enter Admin name to delete:
+			        Enter Product name to update:
 			        <input type="text" name="admName" size="20">
 			        <input type="submit" name="Search" value="Search">
 			    </form>
-                    
                 </div>
                 <div id="modify">
-                    <button id="modifybut" onclick="location.href='adminmod.php';">MODIFY</button>
+                   
                 </div>
                 <div id="fortab">
+
                 <?php
                     if(isset($_POST["Search"])){
                         $an = $_POST["admName"];
                         include 'connection.php';
-                        $sql = "SELECT * From admin where aname='$an'";
+                        $sql = "SELECT * From product where pname='$an'";
 
                         foreach ($dbconnection->query($sql) as $row){
 
                         echo "<form class='updateform' method='post'>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin ID</label>";
-                        echo "<input class='form-control' type='text' name='uid' value='".$row['aid']."'>";
+                        echo "<label for='exampleInputEmail1'>Product ID</label>";
+                        echo "<input class='form-control' type='text' name='pid' value='".$row['pid']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Name</label>";
-                        echo "<input class='form-control' type='text' name='uname' value='".$row['aname']."'>";
+                        echo "<label for='exampleInputEmail1'>Product Name</label>";
+                        echo "<input class='form-control' type='text' name='pname' value='".$row['pname']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Email</label>";
-                        echo "<input class='form-control' type='text' name='uemail' value='".$row['aemail']."' required>";
+                        echo "<label for='exampleInputEmail1'>Product categories</label>";
+                        echo "<input class='form-control' type='text' name='pcat' value='".$row['categories']."' required>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Password</label>";
-                        echo "<input class='form-control' type='text' name='upassword' value='".$row['apassword']."' required>";
+                        echo "<label for='exampleInputEmail1'>Product Ingredients</label>";
+                        echo "<input class='form-control' type='text' name='ping' value='".$row['pingredient']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Confirm Password</label>";
-                        echo "<input class='form-control' type='text' name='upassword-repeat' value='".$row['aconfirm_pass']."' required>";
+                        echo "<label for='exampleInputEmail1'>Product Price</label>";
+                        echo "<input class='form-control' type='text' name='ppri' value='".$row['pprice']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Phone No</label>";
-                        echo "<input class='form-control' type='text' name='uphone' value='".$row['aphone_no']."'>";
+                        echo "<label for='exampleInputEmail1'>Product Image</label>";
+                        echo "<input class='form-control' type='text' name='pimg' value='".$row['image']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Address</label>";
-                        echo "<input class='form-control' type='text' name='uaddress' value='".$row['a_address']."'>";
-                        echo "</div>";
-                        echo "<div class='form-group'>";
-                        echo "<button class='btn btn-success btn-block' type='submit' name='Delete'>Delete</button>";
+                        echo "<button class='btn btn-success btn-block' type='submit' name='update'>Update</button>";
                         echo "</div>";
                         echo "</form>";
                         }
                     }
                 ?>
+                
                 </div>
 
             </div>
@@ -146,18 +144,26 @@
     </body>
 
 </html>
-<?php 
-if(isset($_POST["Delete"])){
-    include('connection.php');
-    $aid=$_POST["uid"];
-    $sql="DELETE from admin Where aid=\"$aid\"";
-    if($dbconnection->query($sql) === TRUE) {
-        echo "<script>alert('Data Deleted Successfully.!')</script>";
-      echo "<script>window.location = 'admin.php'</script>";
-      } 
-      else {
-           echo "Error Deleting Data: " . $dbconnection->error;
+
+<?php
+    if(isset($_POST["update"])){
+        include('connection.php');
+        $pid = $_POST['pid'];
+        $pn = $_POST['pname'];
+        $pc = $_POST['pcat'];
+        $pp = $_POST['ppri'];
+        $pin = $_POST['ping'];
+        $pi = $_POST['pimg'];
+        
+        $sql="UPDATE product SET pname=\"$pn\", categories=\"$pc\", pingredient=\"$pin\", pprice=\"$pp\", image=\"$pi\" Where pid=\"$pid\"";   
+        if($dbconnection->query($sql) === TRUE) {
+            echo "<script>alert('Data Updated Successfully.!')</script>";
+          echo "<script>window.location = 'products.php'</script>";
+          } 
+          else {
+               echo "Error Updating Data: " . $dbconnection->error;
+          }
       }
-    
-}
+
 ?>
+

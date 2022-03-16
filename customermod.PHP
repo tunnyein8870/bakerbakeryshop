@@ -1,4 +1,47 @@
+<?php
+    include ('connection.php');
+    if(isset($_POST['insert']))
+    {
+        $signup_sql = "SELECT * FROM user";
+
+        $signup_result = mysqli_query($dbconnection,$signup_sql);
+        $flag = false;
+            while ($row = mysqli_fetch_assoc($signup_result)){
+                if($row['uemail'] == $_POST['uemail'])
+                {
+                    echo "<script>alert('Email Already Exists... Try Another Email!')</script>";
+                    echo "<script>window.location = 'admin.php'</script>";
+                    !$flag;
+                }
+                else
+                {
+                    $flag;
+                }
+            } // while end
+
+            if(!$flag){ 
+                    include('connection.php');
+                    $uname = $_POST['uname'];
+                    $uemail = $_POST['uemail'];
+                    $upassword = $_POST['upassword'];
+                    $uphone = $_POST['uphone'];
+                    $ucity = $_POST['ucity'];
+                    $uaddress = $_POST['uaddress'];
+                   
+                    $sql = "INSERT INTO user (uname,uemail,upassword,uphone,ucity,uaddress) VALUES ('$uname','$uemail','$upassword','$uphone','$ucity','$uaddress')";
+
+                     if(mysqli_query($dbconnection,$sql)){
+                        echo "<script>
+                          alert('Successfully Insert')
+                          </script>";   
+                        echo "<script>window.location = 'customers.php'</script>";
+                     } // check sql            
+            }// flag end   
+        }   
+?>
+
 <html>
+
     <head>
         <title> Vertical Menu </title>
         <meta name ="viewport" content ="width=device-width, initial-scale=1">
@@ -72,39 +115,47 @@
                     <p>Customer Modification</p>
                 </div>
                 <div id="search">
-                    <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-outline-primary">search</button>
-                    </div>
                 </div>
                 <div id="modify">
                    
                 </div>
                 <div id="fortab">
-                    <form>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Customer Name</label>
-                          <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Customer Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Customer Password</label>
-                            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Custoemr Phone No</label>
-                            <input type="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Phone No">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Customer Address</label>
-                            <input type="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer Address">
-                        </div>
-                        <button type="insert" class="btn btn-primary">Insert</button>
-                        <button type="delete" class="btn btn-primary">Delete</button>
-                    </form>
+                <form class="insertform" action="" method="post">
+            
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">User Name</label>
+              <input class="form-control" type="text" name="uname" placeholder="User Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">User Email</label>
+              <input class="form-control" type="text" name="uemail" placeholder="Enter Email" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">User Password</label>
+              <input class="form-control" type="password" name="upassword" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">User Phone No</label>
+              <input class="form-control" type="text" name="uphone" placeholder="Enter Phone No">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">User City</label>
+              <input class="form-control" type="text" name="ucity" placeholder="Enter City">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">User Address</label>
+              <input class="form-control" type="text" name="uaddress" placeholder="Enter Adress">
+            </div>
+            
+            <div class="form-group">
+              <button class="btn btn-success btn-block" type="submit" name="insert">Insert</button>
+            </div> 
+            <div class="form-group">
+              <button class="btn btn-success btn-block" type="submit" name="update" onclick="location.href='customerupdate.php';">Update</button>
+            </div>
+            
+        </form>
                 </div>
 
             </div>

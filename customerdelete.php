@@ -68,11 +68,11 @@
             <div id="indexbdy3">
 
                 <div id="indtit">
-                    <p>Admin List</p>
+                    <p>Customer List</p>
                 </div>
                 <div id="search">
                 <form method="post" action="">
-			        Enter Admin name to delete:
+			        Enter Customer name to delete:
 			        <input type="text" name="admName" size="20">
 			        <input type="submit" name="Search" value="Search">
 			    </form>
@@ -86,43 +86,43 @@
                     if(isset($_POST["Search"])){
                         $an = $_POST["admName"];
                         include 'connection.php';
-                        $sql = "SELECT * From admin where aname='$an'";
+                        $sql = "SELECT * From user where uname='$an'";
 
                         foreach ($dbconnection->query($sql) as $row){
 
-                        echo "<form class='updateform' method='post'>";
-                        echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin ID</label>";
-                        echo "<input class='form-control' type='text' name='uid' value='".$row['aid']."'>";
-                        echo "</div>";
-                        echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Name</label>";
-                        echo "<input class='form-control' type='text' name='uname' value='".$row['aname']."'>";
-                        echo "</div>";
-                        echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Email</label>";
-                        echo "<input class='form-control' type='text' name='uemail' value='".$row['aemail']."' required>";
-                        echo "</div>";
-                        echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Password</label>";
-                        echo "<input class='form-control' type='text' name='upassword' value='".$row['apassword']."' required>";
-                        echo "</div>";
-                        echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Confirm Password</label>";
-                        echo "<input class='form-control' type='text' name='upassword-repeat' value='".$row['aconfirm_pass']."' required>";
-                        echo "</div>";
-                        echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Phone No</label>";
-                        echo "<input class='form-control' type='text' name='uphone' value='".$row['aphone_no']."'>";
-                        echo "</div>";
-                        echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Address</label>";
-                        echo "<input class='form-control' type='text' name='uaddress' value='".$row['a_address']."'>";
-                        echo "</div>";
-                        echo "<div class='form-group'>";
-                        echo "<button class='btn btn-success btn-block' type='submit' name='Delete'>Delete</button>";
-                        echo "</div>";
-                        echo "</form>";
+                            echo "<form class='updateform' method='post'>";
+                            echo "<div class='form-group'>";
+                            echo "<label for='exampleInputEmail1'>User ID</label>";
+                            echo "<input class='form-control' type='text' name='uid' value='".$row['uid']."'>";
+                            echo "</div>";
+                            echo "<div class='form-group'>";
+                            echo "<label for='exampleInputEmail1'>User Name</label>";
+                            echo "<input class='form-control' type='text' name='uname' value='".$row['uname']."'>";
+                            echo "</div>";
+                            echo "<div class='form-group'>";
+                            echo "<label for='exampleInputEmail1'>User Email</label>";
+                            echo "<input class='form-control' type='text' name='uemail' value='".$row['uemail']."' required>";
+                            echo "</div>";
+                            echo "<div class='form-group'>";
+                            echo "<label for='exampleInputEmail1'>User Password</label>";
+                            echo "<input class='form-control' type='text' name='upassword' value='".$row['upassword']."' required>";
+                            echo "</div>";
+                            echo "<div class='form-group'>";
+                            echo "<label for='exampleInputEmail1'>User Phone No</label>";
+                            echo "<input class='form-control' type='text' name='uphone' value='".$row['uphone']."'>";
+                            echo "</div>";
+                            echo "<div class='form-group'>";
+                            echo "<label for='exampleInputEmail1'>User City</label>";
+                            echo "<input class='form-control' type='text' name='ucity' value='".$row['ucity']."'>";
+                            echo "</div>";
+                            echo "<div class='form-group'>";
+                            echo "<label for='exampleInputEmail1'>User Address</label>";
+                            echo "<input class='form-control' type='text' name='uaddress' value='".$row['uaddress']."'>";
+                            echo "</div>";
+                            echo "<div class='form-group'>";
+                            echo "<button class='btn btn-success btn-block' type='submit' name='Delete'>Delete</button>";
+                            echo "</div>";
+                            echo "</form>";
                         }
                     }
                 ?>
@@ -150,10 +150,10 @@
 if(isset($_POST["Delete"])){
     include('connection.php');
     $aid=$_POST["uid"];
-    $sql="DELETE from admin Where aid=\"$aid\"";
+    $sql="DELETE from user Where uid=\"$aid\"";
     if($dbconnection->query($sql) === TRUE) {
         echo "<script>alert('Data Deleted Successfully.!')</script>";
-      echo "<script>window.location = 'admin.php'</script>";
+      echo "<script>window.location = 'customers.php'</script>";
       } 
       else {
            echo "Error Deleting Data: " . $dbconnection->error;

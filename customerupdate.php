@@ -48,6 +48,7 @@
                 <div id="nevigabar31"></div>
                 <div id="nevigabar32"></div>
                 <div id="nevigabar33"><button id="logout" onclick="location.href='index.php';">LOGOUT</button></div>
+                
             </div>
             <!-- navigation bar -->
     
@@ -68,64 +69,65 @@
             <div id="indexbdy3">
 
                 <div id="indtit">
-                    <p>Admin List</p>
+                    <p>User Modification</p>
                 </div>
                 <div id="search">
                 <form method="post" action="">
-			        Enter Admin name to delete:
+			        Enter product name to update:
 			        <input type="text" name="admName" size="20">
 			        <input type="submit" name="Search" value="Search">
 			    </form>
-                    
                 </div>
                 <div id="modify">
-                    <button id="modifybut" onclick="location.href='adminmod.php';">MODIFY</button>
+                   
                 </div>
                 <div id="fortab">
+
                 <?php
                     if(isset($_POST["Search"])){
                         $an = $_POST["admName"];
                         include 'connection.php';
-                        $sql = "SELECT * From admin where aname='$an'";
+                        $sql = "SELECT * From user where uname='$an'";
 
                         foreach ($dbconnection->query($sql) as $row){
 
                         echo "<form class='updateform' method='post'>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin ID</label>";
-                        echo "<input class='form-control' type='text' name='uid' value='".$row['aid']."'>";
+                        echo "<label for='exampleInputEmail1'>User ID</label>";
+                        echo "<input class='form-control' type='text' name='uid' value='".$row['uid']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Name</label>";
-                        echo "<input class='form-control' type='text' name='uname' value='".$row['aname']."'>";
+                        echo "<label for='exampleInputEmail1'>User Name</label>";
+                        echo "<input class='form-control' type='text' name='uname' value='".$row['uname']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Email</label>";
-                        echo "<input class='form-control' type='text' name='uemail' value='".$row['aemail']."' required>";
+                        echo "<label for='exampleInputEmail1'>User Email</label>";
+                        echo "<input class='form-control' type='text' name='uemail' value='".$row['uemail']."' required>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Password</label>";
-                        echo "<input class='form-control' type='text' name='upassword' value='".$row['apassword']."' required>";
+                        echo "<label for='exampleInputEmail1'>User Password</label>";
+                        echo "<input class='form-control' type='text' name='upassword' value='".$row['upassword']."' required>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Confirm Password</label>";
-                        echo "<input class='form-control' type='text' name='upassword-repeat' value='".$row['aconfirm_pass']."' required>";
+                        echo "<label for='exampleInputEmail1'>User Phone No</label>";
+                        echo "<input class='form-control' type='text' name='uphone' value='".$row['uphone']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Phone No</label>";
-                        echo "<input class='form-control' type='text' name='uphone' value='".$row['aphone_no']."'>";
+                        echo "<label for='exampleInputEmail1'>User City</label>";
+                        echo "<input class='form-control' type='text' name='ucity' value='".$row['ucity']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Address</label>";
-                        echo "<input class='form-control' type='text' name='uaddress' value='".$row['a_address']."'>";
+                        echo "<label for='exampleInputEmail1'>User Address</label>";
+                        echo "<input class='form-control' type='text' name='uaddress' value='".$row['uaddress']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<button class='btn btn-success btn-block' type='submit' name='Delete'>Delete</button>";
+                        echo "<button class='btn btn-success btn-block' type='submit' name='update'>Update</button>";
                         echo "</div>";
                         echo "</form>";
                         }
                     }
                 ?>
+                
                 </div>
 
             </div>
@@ -146,18 +148,27 @@
     </body>
 
 </html>
-<?php 
-if(isset($_POST["Delete"])){
-    include('connection.php');
-    $aid=$_POST["uid"];
-    $sql="DELETE from admin Where aid=\"$aid\"";
-    if($dbconnection->query($sql) === TRUE) {
-        echo "<script>alert('Data Deleted Successfully.!')</script>";
-      echo "<script>window.location = 'admin.php'</script>";
-      } 
-      else {
-           echo "Error Deleting Data: " . $dbconnection->error;
+
+<?php
+    if(isset($_POST["update"])){
+        include('connection.php');
+        $admid = $_POST['uid'];
+        $admname = $_POST['uname'];
+        $admemail = $_POST['uemail'];
+        $admpassword = $_POST['upassword'];
+        $admphone = $_POST['uphone'];
+        $admcity = $_POST['ucity'];
+        $admaddress = $_POST['uaddress'];
+        
+        $sql="UPDATE user SET uname=\"$admname\", uemail=\"$admemail\", upassword=\"$admpassword\", uphone=\"$admphone\", ucity=\"$admcity\", uaddress=\"$admaddress\" Where uid=\"$admid\"";   
+        if($dbconnection->query($sql) === TRUE) {
+            echo "<script>alert('Data Updated Successfully.!')</script>";
+          echo "<script>window.location = 'customers.php'</script>";
+          } 
+          else {
+               echo "Error Updating Data: " . $dbconnection->error;
+          }
       }
-    
-}
+
 ?>
+

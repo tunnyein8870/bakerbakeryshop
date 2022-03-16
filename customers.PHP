@@ -72,35 +72,50 @@
                     <p>Customer List</p>
                 </div>
                 <div id="search">
-                    <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-outline-primary">search</button>
+                <div class="input-group">
+			        <input type="submit" onclick="location.href='customerdelete.php';" value="Delete">
                     </div>
                 </div>
                 <div id="modify">
                     <button id="modifybut" onclick="location.href='customermod.php';">MODIFY</button>
                 </div>
                 <div id="fortab">
-                    <table class="table">
+                <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Phone No</th>
+                            <th scope="col">City</th>
                             <th scope="col">Address</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Password</th>
                           </tr>
                         </thead>
+                        <?php
+                        $counter=1;
+                        include "connection.php";
+                        $viewquery = "SELECT * from user";
+                        foreach ($dbconnection->query($viewquery) as $row) {
+                            $name = $row['uname'];
+                            $email = $row['uemail'];
+                            $phone = $row['uphone'];
+                            $city = $row['ucity'];
+                            $address = $row['uaddress'];
+                            $password = $row['upassword'];
+
+                            echo"<tr>";
+                            echo"<td> $name </td>";
+                            echo"<td> $email </td>";
+                            echo"<td> $phone </td>";
+                            echo"<td> $city </td>";
+                            echo"<td> $address </td>";
+                            echo"<td> $password </td>";
+                            echo" </tr>";
+                        }
+                        ?>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Zoro</td>
-                            <td>Good</td>
-                            <td>5</td>
-                            <td><button id="rem">Remove</button></td>
-                          </tr>
-                        </tbody>
                     </table>
+                        
                 </div>
 
             </div>

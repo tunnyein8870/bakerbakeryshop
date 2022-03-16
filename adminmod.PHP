@@ -7,7 +7,7 @@
         $signup_result = mysqli_query($dbconnection,$signup_sql);
         $flag = false;
             while ($row = mysqli_fetch_assoc($signup_result)){
-                if($row['uemail'] == $_POST['uemail'])
+                if($row['aemail'] == $_POST['uemail'])
                 {
                     echo "<script>alert('Email Already Exists... Try Another Email!')</script>";
                     echo "<script>window.location = 'admin.php'</script>";
@@ -131,7 +131,7 @@
 
             <div class="form-group">
               <label for="exampleInputEmail1">Admin Name</label>
-              <input class="form-control" type="text" name="uname" placeholder="Enter Admin name">
+              <input class="form-control" type="text" name="uname" placeholder="Enter Admin Name">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Admin Email</label>

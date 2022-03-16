@@ -42,6 +42,28 @@
         <li><a href="cart.php">
               <img src="images/cart.png" alt="search" style=" width:20px; height: 20px">
         </a></li>
+        <?php 
+        session_start();
+          echo "<li><a href=''></a></li>";
+    
+          if (isset($_SESSION['uname'])){
+            $uname = $_SESSION['uname'];
+            echo "
+              <li><a href='' data-toogle='tooltip' title=$uname>
+                <img src='images/user.png' alt='search' style='width:30px; height: 30px'>
+              </a></li>
+
+              <li class='dropdown'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'> $uname
+                <span class='caret'></span></a>
+                  <ul class='dropdown-menu'>
+                    <li><a href='#'>Profile</a></li>
+                    <li><a href='logout.php'>Logout</a></li>
+                  </ul>
+            ";
+          }
+          
+        ?>
     </ul>
   </div>
 </nav>

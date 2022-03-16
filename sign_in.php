@@ -1,5 +1,6 @@
  <?php
     include('connection.php');
+    include('header.php');
     if(isset($_POST['signin'])){
         $admin_sql = "SELECT * FROM admin";
         $admin_result = mysqli_query($dbconnection, $admin_sql);
@@ -34,7 +35,6 @@
         }     
     } 
 ?>
-<?php include('header.php'); ?>
 <!DOCTYPE html>
 <head>
   <link rel="stylesheet" type="text/css" href="css files/sign_in.css">
@@ -51,7 +51,7 @@
             <h2 class="text-center"><strong>Sign-In to Baked Bakery</strong></h2>
 
             <div class="form-group">
-              <input class="form-control" type="email" name="email" placeholder="Email">
+              <input class="form-control" type="email" name="email" placeholder="Email" autofocus>
             </div>
             <div class="form-group">
               <input class="form-control" type="password" name="password" placeholder="Password">

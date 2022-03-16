@@ -121,10 +121,6 @@
                     <p>Admin Modification</p>
                 </div>
                 <div id="search">
-                    <div class="input-group">
-                        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-outline-primary">search</button>
-                    </div>
                 </div>
                 <div id="modify">
                    
@@ -162,7 +158,7 @@
               <button class="btn btn-success btn-block" type="submit" name="insert">Insert</button>
             </div> 
             <div class="form-group">
-              <button class="btn btn-success btn-block" type="submit" name="update" value='update'>Update</button>
+              <button class="btn btn-success btn-block" type="submit" name="update" onclick="location.href='adminupdate.php';">Update</button>
             </div>
             
         </form>
@@ -186,18 +182,4 @@
     </body>
 
 </html>
-
-<?php
-    if(isset($_POST["update"])){
-        $admame = $_POST['uname'];
-        $admemail = $_POST['uemail'];
-        $admpassword = $_POST['upassword'];
-        $admcpassword = $_POST['upassword-repeat'];
-        $admphone = $_POST['uphone'];
-        $admaddress = $_POST['uaddress'];
-        include('connection.php');
-        $sql="Update admin Set aname='$upn', aemail='$ub', a_address='$uca', aphone_no=$uin, apassword=$upr, aconfirm_pass='$uim' Where PID=$uid";
-        $dbconnection->exec($sql);
-    }
-?>
 

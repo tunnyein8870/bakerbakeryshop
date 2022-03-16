@@ -7,11 +7,20 @@
         $signup_result = mysqli_query($dbconnection,$signup_sql);
         $flag = false;
             while ($row = mysqli_fetch_assoc($signup_result)){
-                if($row['uemail'] == $_POST['uemail'])
+                if($row['uname'] == $_POST['uname'])
+                {
+                    echo "<script>alert('Username Already Exists... Invalid Username!')</script>";
+                    echo "
+                          <script>
+                            window.location = 'sign_up.php'
+                          </script>";
+                    exit();
+                }
+                else if($row['uemail'] == $_POST['uemail'])
                 {
                     echo "<script>alert('Email Already Exists... Try Another Email!')</script>";
                     echo "<script>window.location = 'sign_up.php'</script>";
-                    !$flag;
+                    exit();
                 }
                 else
                 {
@@ -63,10 +72,10 @@
             <h2 class="text-center"><strong>Sign-Up to Baked Bakery</strong></h2>
 
             <div class="form-group">
-              <input class="form-control" type="text" name="uname" placeholder="Username">
+              <input class="form-control" type="text" id="uname" name="uname" placeholder="Username" autofocus>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="uemail" placeholder="Email" required>
+              <input class="form-control" type="text" id="uemail" name="uemail" placeholder="Email" required>
             </div>
             <div class="form-group">
               <input class="form-control" type="password" name="upassword" placeholder="Password" required>
@@ -75,7 +84,7 @@
               <input class="form-control" type="password" name="upassword-repeat" placeholder="Password (repeat)" required>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="uphone" placeholder="Phone No">
+              <input class="form-control" type="text" name="uphone" placeholder="Phone No" required>
             </div>
             <div class="form-group">
               <input class="form-control" type="text" name="ucity" placeholder="City">

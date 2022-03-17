@@ -9,6 +9,7 @@
 
 
 <!-- start of FAQ  -->
+<div class="startfaq">
 <div class="container" id="#faq">
   <h2><b>FAQ To Baker Bakery</b></h2>
   <div class="panel-group" id="accordion">
@@ -56,9 +57,8 @@
         Delivery problems beyond our control.</div>
       </div>
     </div>
-  </div> 
+  </div>  
 </div>
-
 <!-- comment section -->
 <div class="container">
 <h2><b>Customer Review</b></h2>
@@ -117,6 +117,7 @@
     </div>
 </div>
 </div>
+</div> <!--start FAQ div -->
 
 <!-- start of contact us -->
 <div id="contact">

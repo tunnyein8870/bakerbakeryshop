@@ -10,116 +10,127 @@
 <link rel="stylesheet" type="text/css" href="css files/shop.css">
 </head>
 <body>
+
+
 <!-- start of shop products -->
-<div class="container">
-  <h2 id="toast" style="font-weight: bold; text-align:center;">Toasts Menu of Baker Bakery</h2>
-  <hr>
+<div class="startshopp">
+  <div class="container">
+    <h2 id="toast" style="font-weight: bold; text-align:center;">Toasts Menu of Baker Bakery</h2>
+    <hr>
 
-<?php
-    $product = "SELECT * FROM product WHERE categories = 'Toast'";
-    $product_result = mysqli_query($dbconnection,$product);
-    if (!empty($product_result))
-    {
-        while($col = mysqli_fetch_array($product_result)) 
-        {
-?>
-  <div class="card" style="width:300px;">
-    <img class="card-img-top" src="Products/<?php echo $col['image']?>" alt="shop products" style="width:100%;height:310px">
-    <div class="card-body">
-      <h4 class="cardtitle"><b><?php echo $col['pname']?></b></h4>
-      <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
-      <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
-      <a href="#" class="btn btn-primary">ADD TO CART</a>
-    </div>
-  </div>
   <?php
-        }
-    }
-?>
-</div>
+      $product = "SELECT * FROM product WHERE categories = 'Toast'";
+      $product_result = mysqli_query($dbconnection,$product);
+      if (!empty($product_result))
+      {
+          while($col = mysqli_fetch_array($product_result)) 
+          {
+  ?>
+    <div class="card" style="width:300px;">
+      <img class="card-img-top" src="Products/<?php echo $col['image']?>" alt="shop products" style="width:100%;height:310px">
+      <div class="card-body">
+        <h4 class="cardtitle"><b><?php echo $col['pname']?></b></h4>
+        <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
+        <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
+        <a href="#" class="btn btn-primary">ADD TO CART</a>
+      </div>
+    </div>
+    <?php
+          }
+      }
+  ?>
+  </div>   <!--  end of container toast -->
+</div>  <!--  end of startshopp toast -->
+
 <!-- start shop -> bread product -->
-<div class="container">
-  <h2 id="bread" style="font-weight: bold; text-align:center;">Bread Menu of Baker Bakery</h2>
-  <hr>
+<div class="startshopp">
+  <div class="container">
+    <h2 id="bread" style="font-weight: bold; text-align:center;">Bread Menu of Baker Bakery</h2>
+    <hr>
 
-<?php
-    $product = "SELECT * FROM product WHERE categories = 'Bread'";
-    $product_result = mysqli_query($dbconnection,$product);
-    if (!empty($product_result))
-    {
-        while($col = mysqli_fetch_array($product_result)) 
-        {
-?>
-  <div class="card" style="width:300px;">
-    <img class="card-img-top" src="Products/<?php echo $col['image']?>" alt="shop products" style="width:100%;height:310px">
-    <div class="card-body" style="height:170px">
-      <h4 class="cardtitle"><b><?php echo $col['pname']?></b></h4>
-      <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
-      <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
-      <a href="#" class="btn btn-primary">ADD TO CART</a>
-    </div>
-  </div>
   <?php
-        }
-    }
-?>
-</div>
+      $product = "SELECT * FROM product WHERE categories = 'Bread'";
+      $product_result = mysqli_query($dbconnection,$product);
+      if (!empty($product_result))
+      {
+          while($col = mysqli_fetch_array($product_result)) 
+          {
+  ?>
+    <div class="card" style="width:300px;">
+      <img class="card-img-top" src="Products/<?php echo $col['image']?>" alt="shop products" style="width:100%;height:310px">
+      <div class="card-body" style="height:170px">
+        <h4 class="cardtitle"><b><?php echo $col['pname']?></b></h4>
+        <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
+        <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
+        <a href="#" class="btn btn-primary">ADD TO CART</a>
+      </div>
+    </div>
+    <?php
+          }
+      }
+  ?>
+  </div>
+</div>  <!--  end of startshopp bread -->
 
 <!-- start shop -> pastries product -->
-<div class="container">
-  <h2 id="pastries" style="font-weight: bold; text-align:center;">Pastries Menu of Baker Bakery</h2>
-  <hr>
+<div class="startshopp">
+  <div class="container">
+    <h2 id="pastries" style="font-weight: bold; text-align:center;">Pastries Menu of Baker Bakery</h2>
+    <hr>
 
-<?php
-    $product = "SELECT * FROM product WHERE categories = 'Pastries'";
-    $product_result = mysqli_query($dbconnection,$product);
-    if (!empty($product_result))
-    {
-        while($col = mysqli_fetch_array($product_result)) 
-        {
-?>
-  <div class="card" style="width:300px;">
-    <img class="card-img-top" src="Products/<?php echo $col['image']?>" alt="shop products" style="width:100%;height:310px">
-    <div class="card-body" style="height:170px">
-      <h4 class="cardtitle"><b><?php echo $col['pname']?></b></h4>
-      <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
-      <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
-      <a href="#" class="btn btn-primary">ADD TO CART</a>
-    </div>
-  </div>
   <?php
-        }
-    }
-?>
-</div>
+      $product = "SELECT * FROM product WHERE categories = 'Pastries'";
+      $product_result = mysqli_query($dbconnection,$product);
+      if (!empty($product_result))
+      {
+          while($col = mysqli_fetch_array($product_result)) 
+          {
+  ?>
+    <div class="card" style="width:300px;">
+      <img class="card-img-top" src="Products/<?php echo $col['image']?>" alt="shop products" style="width:100%;height:310px">
+      <div class="card-body" style="height:170px">
+        <h4 class="cardtitle"><b><?php echo $col['pname']?></b></h4>
+        <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
+        <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
+        <a href="#" class="btn btn-primary">ADD TO CART</a>
+      </div>
+    </div>
+    <?php
+          }
+      }
+  ?>
+  </div>
+</div>  <!--  end of startshopp pastries -->
 
 <!-- start shop -> dessert product -->
-<div class="container">
-  <h2 id="desserts" style="font-weight: bold; text-align:center;">Desserts Menu of Baker Bakery</h2>
-  <hr>
+<div class="startshopp">
+  <div class="container">
+    <h2 id="desserts" style="font-weight: bold; text-align:center;">Desserts Menu of Baker Bakery</h2>
+    <hr>
 
-<?php
-    $product = "SELECT * FROM product WHERE categories = 'Desserts'";
-    $product_result = mysqli_query($dbconnection,$product);
-    if (!empty($product_result))
-    {
-        while($col = mysqli_fetch_array($product_result)) 
-        {
-?>
-  <div class="card" style="width:300px;">
-    <img class="card-img-top" src="Products/<?php echo $col['image']?>" alt="shop products" style="width:100%;height:310px">
-    <div class="card-body" style="height:170px">
-      <h4 class="cardtitle"><b><?php echo $col['pname']?></b></h4>
-      <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
-      <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
-      <a href="#" class="btn btn-primary">ADD TO CART</a>
-    </div>
-  </div>
   <?php
-        }
-    }
-?>
-</div>
+      $product = "SELECT * FROM product WHERE categories = 'Desserts'";
+      $product_result = mysqli_query($dbconnection,$product);
+      if (!empty($product_result))
+      {
+          while($col = mysqli_fetch_array($product_result)) 
+          {
+  ?>
+    <div class="card" style="width:300px;">
+      <img class="card-img-top" src="Products/<?php echo $col['image']?>" alt="shop products" style="width:100%;height:310px">
+      <div class="card-body" style="height:170px">
+        <h4 class="cardtitle"><b><?php echo $col['pname']?></b></h4>
+        <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
+        <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
+        <a href="#" class="btn btn-primary">ADD TO CART</a>
+      </div>
+    </div>
+    <?php
+          }
+      }
+  ?>
+  </div>
+</div> <!--end startshop dessert-->
 
 <!-- start of contact us -->
 <div id="contact">

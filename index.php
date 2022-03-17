@@ -1,47 +1,11 @@
+<?php include('header.php')?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Baker Bakery Home Page</title>
   <link rel="stylesheet" type="text/css" href="css files/style.css">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<!-- navigation bar -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand">Baker Bakery</a>
-    </div>
-    <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About us</a></li>
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Shop<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Toasts</a></li>
-                <li><a href="#">Bread</a></li>
-                <li><a href="#">Pastries</a></li>
-                <li><a href="#">Desserts</a></li>
-                <li><a href="#">Cookies</a></li>
-            </ul>
-        </li>
-        <li><a href="#contact">Contact us</a></li>
-        <li><a href="#">Review</a></li>
-        <li><a href="sign_in.php">Sign-in</a></li>
-        <li><a href="#">
-              <img src="images/search.png" alt="search" style=" width:20px; height: 20px">
-        </a></li>
-        <li><a href="#">
-              <img src="images/cart.png" alt="search" style=" width:20px; height: 20px">
-        </a></li>
-    </ul>
-  </div>
-</nav>
-
 <!-- image slideshow gallery with bootstrap reference by
 https://www.w3schools.com/bootstrap/bootstrap_carousel.asp -->
 <div class="container">

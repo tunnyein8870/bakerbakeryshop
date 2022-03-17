@@ -35,7 +35,16 @@
         </li>
         <li><a href="index.php#contact">Contact us</a></li>
         <li><a href="review.php">Review</a></li>
-        <li><a href="sign_in.php">Sign-in</a></li>
+
+        <?php
+        if (!isset($_SESSION)){
+          session_start(); 
+        }
+        if(!isset($_SESSION['uname'])) { 
+          echo '<li><a href="sign_in.php">Sign-in</a></li>';
+        }
+        ?>
+
         <li><a href="search.php">
               <img src="images/search.png" alt="search" style=" width:20px; height: 20px">
         </a></li>
@@ -43,14 +52,14 @@
               <img src="images/cart.png" alt="search" style=" width:20px; height: 20px">
         </a></li>
         <?php 
-        session_start();
-          echo "<li><a href=''></a></li>";
-    
-          if (isset($_SESSION['uname'])){
-            $uname = $_SESSION['uname'];
+        if (!isset($_SESSION)){
+          session_start(); 
+        }
+        if(isset($_SESSION['uname'])) { 
+          $uname = $_SESSION['uname'];
             echo "
-              <li><a href='' data-toogle='tooltip' title=$uname>
-                <img src='images/user.png' alt='search' style='width:30px; height: 30px'>
+              <li><a data-toogle='tooltip' title=$uname>
+                <img src='images/user.png' style='width:20px; height: 20px'>
               </a></li>
 
               <li class='dropdown'>
@@ -60,9 +69,8 @@
                     <li><a href='#'>Profile</a></li>
                     <li><a href='logout.php'>Logout</a></li>
                   </ul>
-            ";
-          }
-          
+            ";     
+        } 
         ?>
     </ul>
   </div>

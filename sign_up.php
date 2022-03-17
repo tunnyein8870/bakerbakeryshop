@@ -3,7 +3,6 @@
     if(isset($_POST['signup']))
     {
         $signup_sql = "SELECT * FROM user";
-
         $signup_result = mysqli_query($dbconnection,$signup_sql);
         $flag = false;
             while ($row = mysqli_fetch_assoc($signup_result)){

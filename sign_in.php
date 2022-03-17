@@ -1,6 +1,7 @@
  <?php
-    include('connection.php');
     include('header.php');
+    include('connection.php');
+
     if(isset($_POST['signin'])){
         $admin_sql = "SELECT * FROM admin";
         $admin_result = mysqli_query($dbconnection, $admin_sql);

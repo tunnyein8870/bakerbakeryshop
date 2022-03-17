@@ -1,3 +1,44 @@
+<?php
+if (!isset($_SESSION['uname'])){
+  session_start();
+}
+include 'connection.php';
+// error_reporting(0);
+if(!isset($_SESSION['cart'])){
+    $_SESSION['cart']=array();
+}
+
+$retrieveQuery = "Select * from product";
+$stmt = $dbconnection->prepare($retrieveQuery);
+$stmt->execute();
+$resultSet = $stmt->get_result(); 
+$data = $resultSet->fetch_all(MYSQLI_ASSOC);
+if(isset($_POST['ac'])) {
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    
+    $flag = FALSE;
+    $id = $_POST['id'];
+
+   
+    foreach ($_SESSION['cart'] as $k => $v) {
+        if ($k == $id) {
+            $flag = TRUE;
+            $v += 1;
+           
+            $_SESSION['cart'][$k] = $v;
+           
+            break;
+        }
+    }
+
+    if ($flag == FALSE) {
+        $_SESSION['cart'][$id] = 1;
+    }
+    
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,17 +89,46 @@
         <li><a href="search.php">
               <img src="images/search.png" alt="search" style=" width:20px; height: 20px">
         </a></li>
-        <li><a href="cart.php">
-              <img src="images/cart.png" alt="search" style=" width:20px; height: 20px">
-        </a></li>
+
+        <!-- add to cart start -->
+        <li><a href="checkout.php"><img src="images/cart.png" alt="search" style=" width:20px; height: 20px"></a>
+        <span style='color:white;'>
+        <a>
+              <div class="total">
+             
+               <?php 
+                if(isset($_POST['ac']))
+                {
+                  if(!isset($_SESSION['uname'])){
+                    echo "<script>alert('Please Login First!')</script>";
+                    unset($_SESSION['cart']);
+                  }
+                  else{
+                    print(array_sum($_SESSION['cart']));
+                  }
+                }
+                else {
+                    print "0";
+                }
+                ?></div>     
+            </a>
+        </span>  
+        </li>
+        <li>
+         
+            <!-- <form method="post">
+            <p><button name="reset" class="reset" style="background-color: black; border-color: black; font-family: Times New Roman, Times, serif;">Empty Cart</button></p>
+            </form> -->
+        </li>
         <?php 
+        // session_start();
         if (!isset($_SESSION)){
           session_start(); 
-        }
-        if(isset($_SESSION['uname'])) { 
+        }    
+        if (isset($_SESSION['uname'])){
           $uname = $_SESSION['uname'];
             echo "
-              <li><a data-toogle='tooltip' title=$uname>
+              <li><a href='' data-toogle='tooltip' title=$uname>
                 <img src='images/user.png' style='width:20px; height: 20px'>
               </a></li>
 
@@ -69,8 +139,8 @@
                     <li><a href='#'>Profile</a></li>
                     <li><a href='logout.php'>Logout</a></li>
                   </ul>
-            ";     
-        } 
+            ";
+          } 
         ?>
     </ul>
   </div>

@@ -1,79 +1,81 @@
+<!DOCTYPE>
 <html>
+<head>
+    <title> Vertical Menu </title>
+    <meta name ="viewport" content ="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src ="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css files/admindashboard.css">
 
-    <head>
-        <title> Vertical Menu </title>
-        <meta name ="viewport" content ="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src ="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link rel=stylesheet href=admin.css>
-    </head>
+</head>
+<body>
+  <div class='dashboard'>
+    <div class="dashboard-nav">
+        <header><a href="#!" class="menu-toggle">
+            <i>
+            <img src="images/menu.png" style="width:20px; height: 20px;"></i>
+                <span>BAKER BAKERY</span></a>
+        </header>
 
-    <body>
+        <nav class="dashboard-nav-list">
+            <a href="admindashboard.php" class="dashboard-nav-item active">
+                <i><img src="images/dashboard.png" style="width:30px; height:30px"></i>
+                DASHBOARD </a>
 
-    <div id="mainbd">
+            <a href="admin_review.php" class="dashboard-nav-item">
+                <i><img src="images/review.png" style="width:30px; height:30px"></i>
+                 REVIEWS </a>
 
-        <div id="nevigabar">
-            <div id="nevigabar1">
-                <p>Barker Bakery</p>
-            </div>
-            <div id="nevigabar2">
-                <nav class="navbar navbar-inverse">
-                    <div id="container-fluid">
-                    <nav class ="navbar bg-dark">
-                            <ul class ="nav navbar-nav">
-                            <li class ="nav-item">
-                            <a class ="nav-link" href="admindashboard.php"> DASHBOARD </a>
-                            </li>
-                            <li class ="nav-item">
-                            <a class ="nav-link" href="admin_review.php"> REVIEWS </a>
-                            </li>
-                            <li class ="nav-item">
-                            <a class ="nav-link" href="products.php"> PRODUCTS </a>
-                            </li>
-                            <li class ="nav-item">
-                            <a class ="nav-link" href="customers.php"> CUSTOMERS </a>
-                            </li>
-                            <li class ="nav-item">
-                                <a class ="nav-link" href="order.php"> ORDER </a>
-                            </li> 
-                            <li class ="nav-item">
-                                <a class ="nav-link" href="admin.php"> ADMIN </a>
-                            </li>
-                            </ul>
-                        </nav>
+            <a href="products.php" class="dashboard-nav-item">
+                <i class="fas fa-cogs">
+                    <img src="images/product.png" style="width:30px; height:30px">
+                </i> PRODUCTS </a>
+
+            <a href="customers.php" class="dashboard-nav-item"><i class="fas fa-user">
+                <img src="images/customer.png" style="width:30px; height:30px">
+            </i> CUSTOMERS </a>
+
+            <a href="order.php" class="dashboard-nav-item"><i class="fas fa-user">
+                <img src="images/order.png" style="width:30px; height:30px">
+            </i> ORDERS </a>
+
+            <a href="admin.php" class="dashboard-nav-item"><i class="fas fa-user">
+                <img src="images/admin.png" style="width:30px; height:30px">
+            </i> ADMIN </a>
+
+            <div class="nav-item-divider"></div>
+            <a href="index.php" class="dashboard-nav-item">
+            <i>
+                <img src="images/logout.png" style="width:30px; height:30px">
+            </i> LOGOUT </a>
+        </nav>
+    </div>
+
+    <div class='dashboard-app'>
+        <header class='dashboard-toolbar'>
+            <a href="#" class="menu-toggle">
+            <img src="images/menu.png" style="width:20px; height: 20px;"> <span style="font-size: 20px; color: black; padding-left: 50px;">Admin</span>
+            </a>
+        </header>
+        <div class='dashboard-content'>
+            <div class='container'>
+                <div class='card'>
+                    <div class='card-header'>
+                        <h1>Admin panel</h1>
                     </div>
-                </nav>
-            </div>
-            <div id="nevigabar3">
-                <div id="nevigabar31"></div>
-                <div id="nevigabar32"></div>
-                <div id="nevigabar33"><button id="logout" onclick="location.href='index.php';">LOGOUT</button></div>
-                
-            </div>
-            <!-- navigation bar -->
-    
-        </div>
-
-        <div id="indexbdy">
-            <div id="indexbdy1">
-                <h2>Admin Panel</h1>
-            </div>
-            <div id="indexbdy2">
-                <div id="admname">
-                    <p>Team 6 Admins</p>
-                </div>
-                <div id="imgrou">
-                    
+                    <div class='card-body'>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
                 </div>
             </div>
-            <div id="indexbdy3">
-                <div id="dash1"></div>
-                <div id="dash2"></div>
-            </div>
         </div>
-
-        <footer class="bg-light text-center text-lg-start">
+                <footer class="bg-light text-center text-lg-start">
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
               © 2022 Copyright:
@@ -81,10 +83,28 @@
             </div>
             <!-- Copyright -->
         </footer>
-
     </div>
-
-
-    </body>
-
+</div>  
+<script type="text/javascript">
+    const mobileScreen = window.matchMedia("(max-width: 990px )");
+$(document).ready(function () {
+    $(".dashboard-nav-dropdown-toggle").click(function () {
+        $(this).closest(".dashboard-nav-dropdown")
+            .toggleClass("show")
+            .find(".dashboard-nav-dropdown")
+            .removeClass("show");
+        $(this).parent()
+            .siblings()
+            .removeClass("show");
+    });
+    $(".menu-toggle").click(function () {
+        if (mobileScreen.matches) {
+            $(".dashboard-nav").toggleClass("mobile-show");
+        } else {
+            $(".dashboard").toggleClass("dashboard-compact");
+        }
+    });
+});
+</script>
+</body>
 </html>

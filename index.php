@@ -60,8 +60,6 @@ https://www.w3schools.com/bootstrap/bootstrap_carousel.asp -->
   </div>
 <!-- end of image slideshow gallery -->
 
-
-
 <!-- start of About Us -->
 <div  id="about">
   <h2>About Our Store<hr></h2>

@@ -23,7 +23,7 @@
                     $usr = $_SESSION['uname'];
                     $_SESSION['password'] = $_POST['password'];
                     echo "<script>alert('Login Success...Welcome $usr')</script>";
-                    echo "<script>window.location = 'index.php'</script>";
+                    echo "<script>window.location = 'shop.php'</script>";
                     !$flag;
                 }// username and password check end
                 else{

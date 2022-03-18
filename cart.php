@@ -71,13 +71,12 @@
                 <span class="small text-muted me-2">Order total:</span> <span class="lead fw-normal">10000Ks</span>
               </p>
             </div>
-
           </div>
         </div>
 
         <div class="d-flex justify-content-end">
           <a href="shop.html" class="sh">&lt;&nbsp;  Continue Shopping</a>
-          <button type="button" class="btn btn-primary btn-lg">Add to cart</button>
+          <button type="button" class="btn btn-primary btn-lg">Checkout</button>
         </div>
 
       </div>

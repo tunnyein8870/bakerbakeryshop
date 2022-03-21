@@ -1,4 +1,33 @@
-<?php include('header.php'); ?>
+<?php 
+  include('header.php'); 
+  if (isset($_POST['review_post'])){
+    if (!isset($_SESSION['uname'])){
+      echo "
+        <script>alert('Please login first to give comments.')</script>
+      ";
+    }
+    else{
+      $uname = $_SESSION['uname'];
+      include 'connection.php';
+      $sql = "SELECT * From user where uname='$uname'";
+
+      foreach ($dbconnection->query($sql) as $row){
+        $usid = $row['uid'];
+        $comment = $_POST['convo'];
+        $rate = $_POST['rating'];
+
+        $sqlinsert = "INSERT INTO review (cid,comment,rating,date) VALUES ('$usid','$comment','$rate',now())";
+        if($dbconnection->query($sqlinsert) === TRUE) {
+          echo "<script>alert('Data Insert Successfully.!')</script>";
+        echo "<script>window.location = 'review.php'</script>";
+        } 
+        else {
+             echo "Error Inserting Data: " . $dbconnection->error;
+        } 
+      }
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +35,6 @@
   <link rel="stylesheet" type="text/css" href="css files/review.css">
 </head>
 <body>
-
 
 <!-- start of FAQ  -->
 <div class="startfaq">
@@ -71,6 +99,7 @@
                 </div><br>
 
                 <!-- review part -->
+                <form action="review.php" method="post">
                 <div class="rating">
                   <input type="radio" name="rating" value="5" id="5">
                   <label for="5">☆</label>
@@ -83,33 +112,58 @@
                   <input type="radio" name="rating" value="1" id="1">
                   <label for="1">☆</label>
                 </div>
+                
 
               <!-- rating.js file -->
               <script src="js/addons/rating.js"></script>
                 <div class="panel-body">
-                    <textarea class="form-control" placeholder="Join the conversation..." rows="3"></textarea>
+                
+                
+                  <input class='form-control' type='text' name='convo' value='' placeholder="Give Your Review">;
+                  
                     <br>
                     <p>Customer Name</p>
-                    <button type="button" class="btn btn-info pull-right">Post</button>
+                    
+                    <button type="submit" class="btn btn-info pull-right" name='review_post'>Post</button>
+                    </form>
                     <div class="clearfix"></div>
                     <hr>
-                    <ul class="media-list">
-                        <li class="media">
-                            <a href="#" class="pull-left">
-                                <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
-                            </a>
-                            <div class="media-body">
-                                <span class="text-muted pull-right">
-                                    <small class="text-muted">30 min ago</small>
-                                </span>
-                                <strong class="text-success">@MartinoMont</strong>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
+                    
+                    <?php
+                            $counter = 1;
+                            include "connection.php";
+                            $viewquery = "SELECT * from review";
+                            foreach ($dbconnection->query($viewquery) as $row){
+                                $cid = $row['cid'];
+                                $rev = $row['comment'];
+                                $da = $row['date'];
+
+                                include 'connection.php';
+                                $sesql = "SELECT * From user where uid='$cid'";
+
+                                foreach ($dbconnection->query($sesql) as $row){
+                                  $cuname = $row['uname'];
+
+                                  echo "<ul class='media-list'>";
+                                  echo "<li class='media'>";
+                                  echo "<a href='#' class='pull-left'>";
+                                  echo "<img src='https://bootdey.com/img/Content/user_1.jpg' alt='' class='img-circle'>";
+                                  echo "</a>";
+                                  echo "<div class='media-body'>";
+                                  echo "<span class='text-muted pull-right'>";
+                                  echo "<small class='text-muted'>$da</small>";
+                                  echo "</span>";
+                                  echo "<strong class='text-success'>$cuname</strong>";
+                                  echo "<p>";
+                                  echo "$rev";
+                                  echo "</p>";
+                                  echo "</div>";
+                                  echo "</li>";
+                                  echo "</ul>";
+                                }    
+                            }
+                        ?>
+
                 </div>
             </div>
         </div>

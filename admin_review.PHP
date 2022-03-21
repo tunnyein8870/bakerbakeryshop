@@ -73,82 +73,34 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Customer ID</th>
                                 <th scope="col">Review</th>
                                 <th scope="col">Rating</th>
+                                <th scope="col">Date</th>
                             </tr>
                         </thead>
                         <tbody class="customtable">
-                            <tr>
+                        <?php
+                            $counter = 1;
+                            include "connection.php";
+                            $viewquery = "SELECT * from review";
+                            foreach ($dbconnection->query($viewquery) as $row){
+                                $id = $row['rid'];
+                                $cid = $row['cid'];
+                                $rev = $row['comment'];
+                                $rat = $row['rating'];
+                                $da = $row['date'];
 
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
+                                echo"<tr>";
+                                echo"<td> $id </td>";
+                                echo"<td> $cid </td>";
+                                echo"<td> $rev </td>";
+                                echo"<td> $rat </td>";
+                                echo"<td> $da </td>";
+                                echo" </tr>";
+                            }
+                        ?>
 
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-
-                                <td>1</td>
-                                <td>Zoro</td>
-                                <td>Good</td>
-                                <td>3</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

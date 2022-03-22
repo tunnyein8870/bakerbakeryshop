@@ -112,6 +112,9 @@
                         echo "<input class='form-control' type='text' name='ppri' value='".$row['pprice']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
+                        echo "<div class='rating'>";
+                        echo "<label for='exampleInputEmail1'>Product Availability: ".$row['availability']."</label><br>";
+                        echo "</div>";
                         echo "<label for='exampleInputEmail1'>Product Image</label>";
                         echo "<input class='form-control' type='text' name='pimg' value='".$row['image']."'>";
                         echo "</div>";

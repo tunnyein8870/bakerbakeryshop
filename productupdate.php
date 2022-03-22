@@ -112,6 +112,13 @@
                         echo "<label for='exampleInputEmail1'>Product Price</label>";
                         echo "<input class='form-control' type='text' name='ppri' value='".$row['pprice']."'>";
                         echo "</div>";
+                        echo "<div class='rating'>";
+                        echo "<label for='exampleInputEmail1'>Product Availability: ".$row['availability']."</label><br>";
+                        echo "<input type='radio' name='ava' value='Available'>";
+                        echo "<label>Enable</label>";
+                        echo "<input type='radio' name='ava' value='Not Available'>";
+                        echo "<label>Disable</label>";
+                        echo "</div>";
                         echo "<div class='form-group'>";
                         echo "<label for='exampleInputEmail1'>Product Image</label>";
                         echo "<input class='form-control' type='text' name='pimg' value='".$row['image']."'>";
@@ -154,8 +161,9 @@
         $pp = $_POST['ppri'];
         $pin = $_POST['ping'];
         $pi = $_POST['pimg'];
+        $av = $_POST['ava'];
         
-        $sql="UPDATE product SET pname=\"$pn\", categories=\"$pc\", pingredient=\"$pin\", pprice=\"$pp\", image=\"$pi\" Where pid=\"$pid\"";   
+        $sql="UPDATE product SET pname=\"$pn\", categories=\"$pc\", pingredient=\"$pin\", pprice=\"$pp\",availability=\"$av\", image=\"$pi\" Where pid=\"$pid\"";   
         if($dbconnection->query($sql) === TRUE) {
             echo "<script>alert('Data Updated Successfully.!')</script>";
           echo "<script>window.location = 'products.php'</script>";

@@ -78,6 +78,7 @@
                                 <th scope="col">Category</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Ingredients</th>
+                                <th scope="col">Availability</th>
                             </tr>
                         </thead>
                         <tbody class="customtable">
@@ -90,12 +91,14 @@
                             $categories = $row['categories'];
                             $ingredient = $row['pingredient'];
                             $price = $row['pprice'];
+                            $ava = $row['availability'];
 
                             echo"<tr>";
                             echo"<td> $name </td>";
                             echo"<td> $categories </td>";
                             echo"<td> $price </td>";
                             echo"<td> $ingredient </td>";
+                            echo"<td> $ava </td>";
                             echo" </tr>";
                         }
                         ?>                                                         

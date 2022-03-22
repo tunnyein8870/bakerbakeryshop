@@ -8,8 +8,9 @@
                     $pp = $_POST['ppri'];
                     $pin = $_POST['ping'];
                     $pi = $_POST['pimg'];
+                    $av = $_POST['ava'];
                    
-                    $sql = "INSERT INTO product (pname,categories,pingredient,pprice,image) VALUES ('$pn','$pc','$pin','$pp','$pi')";
+                    $sql = "INSERT INTO product (pname,categories,pingredient,pprice,availability,image) VALUES ('$pn','$pc','$pin','$pp','$av','$pi')";
 
                     if($dbconnection->query($sql) === TRUE) {
                         echo "<script>alert('Data Insert Successfully.!')</script>";
@@ -104,7 +105,7 @@
                 <form class="insertform" action="" method="post">
             <div class="form-group">
               <label for="exampleInputEmail1">Product Name</label>
-              <input class="form-control" type="text" name="pname" placeholder="User Product Name">
+              <input class="form-control" type="text" name="pname" placeholder="Product Name">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Product categories</label>
@@ -117,6 +118,13 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Product Ingredients</label>
               <input class="form-control" type="text" name="ping" placeholder="Enter Product Ingredients">
+            </div>
+            <div class="rating">
+                <label for="exampleInputEmail1">Product Availability</label><br>
+                  <input type="radio" name="ava" value="Available">
+                  <label>Enable</label>
+                  <input type="radio" name="ava" value="Not Available">
+                  <label>Disable</label>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Product Image</label>

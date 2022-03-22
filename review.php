@@ -18,7 +18,7 @@
 
         $sqlinsert = "INSERT INTO review (cid,comment,rating,date) VALUES ('$usid','$comment','$rate',now())";
         if($dbconnection->query($sqlinsert) === TRUE) {
-          echo "<script>alert('Data Insert Successfully.!')</script>";
+          echo "<script>alert('Thanks for your Review.!')</script>";
         echo "<script>window.location = 'review.php'</script>";
         } 
         else {

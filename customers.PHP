@@ -78,7 +78,6 @@
                                 <th scope="col">Phone no</th>
                                 <th scope="col">City</th>
                                 <th scope="col">Address</th>
-                                <th scope="col">Password</th>
                             </tr>
                         </thead>
                         <tbody class="customtable">
@@ -100,7 +99,6 @@
                             echo"<td> $phone </td>";
                             echo"<td> $city </td>";
                             echo"<td> $address </td>";
-                            echo"<td> $password </td>";
                             echo" </tr>";
                         }
                         ?>

@@ -1,9 +1,73 @@
-<?php include('header.php'); ?>
+<?php 
+include('connection.php');
+include('header.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Baker Bakery Cart Page</title>
   <link rel="stylesheet" type="text/css" href="css files/cart.css">
+  <script type="text/javascript">
+    $(document).ready(function(){
+      update_amounts();
+      $('.qty, .price').on('keyup keypress blur change'.
+        function(e){
+          update_amounts();
+        });
+    });
+    function update_amounts(){
+      var sum = 0.0;
+      $('#cartresult').each(function(){
+        var qty = $(this).find('qty').val();
+        var price = $(this).find('.price').val();
+        var amount = (qty*price)
+        sum+=amount;
+        $(this).find('.amount').text(''+amount);
+      });
+      %('.total').text(sum);
+    }
+    var incQty;
+    var decQty;
+    var plusBtn = $(".cart-qty-plus");
+    var minusBtn = $(".cart-qty-minus");
+    var incQty = plusBtn.click(function(){
+      var $n = $(this)
+      .parent(".btn-container")
+      .find(".qty");
+      $n.val(Number($n.val())+1);
+      update_amounts();
+    });
+
+    var decQty = minusBtn.click(function(){
+      var $n = $(this)
+      .parent(".btn-container")
+      .find(".qty");
+      var QtyVal = Number($n.val());
+      if (QtyVal > 0){
+        $n.val(QtyVal - 1);
+      }
+      update_amounts();
+    });
+  </script>
+  <style type="text/css">
+    .cart-qty-plus, 
+    .cart-qty-minus{
+      width: 30px;
+      height: 30px;
+      background-color: #fff;
+      border: 1px solid #ced4da;
+      border-radius: .25rem;
+    }
+    .cart-qty-plus:hover,
+    .cart-qty-minus:hover{
+      background-color: #5161ce;
+      color: #fff;
+    }
+    .btn-container{
+      display: flex;
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
 
@@ -16,43 +80,94 @@
         <p><span class="h2"><br><b>&nbsp; Shopping Cart</b></span>
 <!--           <span class="h4">(1 item in your cart)</span> -->
         </p>
-
         <div class="card mb-4">
           <div class="card-body p-4">
 
             <div class="row align-items-center">
               <div class="col-md-2">
-                <img src="images/bakery7.jpg" class="img-fluid" alt="Product Images" style="width:100px; height:100px;">
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
-                  <p class="small text-muted mb-4 pb-2">Name</p><br>
-                  <p class="lead fw-normal mb-0">Cupcake</p>
+                  <p class="small text-muted mb-4 pb-2">Name</p>
+                </div>
+              </div>
+              <div class="col-md-1 d-flex justify-content-center">
+                <div>
+                  <p class="small text-muted mb-4 pb-2">Category</p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
-                  <p class="small text-muted mb-4 pb-2">Category</p><br>
-                  <p class="lead fw-normal mb-0"><i class="fas fa-circle me-2" style="color: #fdd8d2;"></i> Dessert</p>
+                  <p class="small text-muted mb-4 pb-2">Product Price</p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
-                  <p class="small text-muted mb-4 pb-2">Quantity</p><br>
-                  <p class="lead fw-normal mb-0">
-                  <input min="0" name="quantity" value="2" type="number"
-                  class="form-control form-control-sm" /></p>
+                  <p class="small text-muted mb-4 pb-2">Quantity</p>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
-                  <p class="small text-muted mb-4 pb-2">Price</p><br>
-                  <p class="lead fw-normal mb-0">5000Ks</p>
+                  <p class="small text-muted mb-4 pb-2">Total Price</p>
+                </div>
+              </div>
+              <div class="col-md-1 d-flex justify-content-center">
+                <div>
+                  <p class="small text-muted mb-4 pb-2">Action</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<?php 
+if (isset($_SESSION['cart'])) {
+  $id = array_column($_SESSION['cart'], 'pid');
+  // $result=$dbconnection->getData();
+  $product = "SELECT * FROM product";
+  $product_result = mysqli_query($dbconnection,$product);
+  while($row = mysqli_fetch_assoc($product_result)){
+    foreach ($id as $pid) {
+      if ($row['pid'] == $pid) {
+?>
+        <div class="card mb-4" id="cartresult">
+          <div class="card-body p-4">
+
+            <div class="row align-items-center">
+              <div class="col-md-2">
+                <img src="Products/<?php echo $row['image'] ?>" class="img-fluid" alt="Product Images" style="width:100px; height:100px;">
+              </div>
+              <div class="col-md-2 d-flex justify-content-center">
+                <div>
+                  <p class="lead fw-normal mb-0"><?php echo $row['pname'] ?></p>
+                </div>
+              </div>
+              <div class="col-md-1 d-flex justify-content-center">
+                <div>
+                  <p class="lead fw-normal mb-0"><?php echo $row['categories'] ?></p>
+                </div>
+              </div>
+              
+              <div class="col-md-2 d-flex justify-content-center">
+                <div>
+                  <input type="text" name="price" class="price" value="<?php echo $row['pprice'] ?>" disabled>
+                  <!-- <p class="lead fw-normal mb-0"></p> -->
+                </div>
+              </div>
+              <div class="col-md-2 d-flex justify-content-center">
+                <div class="btn-container">
+                  <button type="button" class="cart-qty-plus" value="+">+</button>
+                  <input type="text" name="qty" min="0" class="qty" value="1"/>
+                  <button type="button" class="cart-qty-minus" value="-">-</button>
                 </div>
               </div>
               <div class="col-md-2 d-flex justify-content-center">
                 <div>
-                  <p class="small text-muted mb-4 pb-2">Action</p><br>
+                  <input type="text" name="amount" class="amount" value="<?php echo $row['pprice'] ?>" disabled>
+                </div>
+              </div>
+              <div class="col-md-1 d-flex justify-content-center">
+                <div>
                   <p class="lead fw-normal mb-0">
                   <img src="images/trash.png" alt="Product Images" style="width:20px; height:20px;">
                   </p>
@@ -62,13 +177,21 @@
 
           </div>
         </div>
+<?php
+      }
+    }
+  }
+}else{
+  echo "cart is empty";
+}
+?>
 
         <div class="card mb-5">
           <div class="card-body p-4">
 
             <div class="float-end">
               <p class="mb-0 me-5 d-flex align-items-center">
-                <span class="small text-muted me-2">Order total:</span> <span class="lead fw-normal">10000Ks</span>
+                <span class="small text-muted me-2">Order total:</span> <span class="total lead fw-normal" id="total">0</span><span>Ks</span>
               </p>
             </div>
           </div>

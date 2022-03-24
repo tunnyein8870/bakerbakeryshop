@@ -61,14 +61,10 @@ if (!isset($_SESSION['uname'])) {
                     //  increase cart 
                     include('getcart.php');
                     if (isset($_SESSION['cart'])) {
-                      $count = array_sum($_SESSION['cart']);
-                      echo "
-                        <sub>$count</sub>
-                      ";
+                      $count = count($_SESSION['cart']);
+                      echo "<sub>$count</sub>";
                     } else {
-                      echo "
-                        <sub>0</sub>
-                      ";
+                      echo "<sub>0</sub>";
                     }
 
                     ?></div>

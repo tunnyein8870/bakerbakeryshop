@@ -32,7 +32,7 @@
       <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
       <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
       <form action="shop.php" method="post">
-          <input type="hidden" name="id" value="$id">
+          <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
           <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
       </form>
     </div>
@@ -65,7 +65,7 @@
       <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
       <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
       <form action="shop.php" method="post">
-          <input type="hidden" name="id" value="$id">
+          <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
           <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
       </form>
     </div>
@@ -98,7 +98,7 @@
       <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
       <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
       <form action="shop.php" method="post">
-          <input type="hidden" name="id" value="$id">
+          <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
           <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
       </form>
     </div>
@@ -132,7 +132,7 @@
       <p style="color:#6b5756;"><?php echo $col['pprice']?>Ks</p>
       <p class="card-text">Ingredients: <?php echo $col['pingredient']?></p>
       <form action="shop.php" method="post">
-          <input type="hidden" name="id" value="$id">
+          <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
           <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
       </form>
     </div>

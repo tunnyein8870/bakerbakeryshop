@@ -43,6 +43,10 @@
                 <img src="images/admin.png" style="width:30px; height:30px">
             </i> ADMIN </a>
 
+            <a href="admin_payment.php" class="dashboard-nav-item active"><i class="fas fa-user">
+                <img src="images/payment.png" style="width:30px; height:30px">
+            </i> PAYMENT </a>
+
             <div class="nav-item-divider"></div>
             <a href="index.php" class="dashboard-nav-item">
             <i>
@@ -111,7 +115,7 @@
                         </tbody>
                     </table>
                 </div>
-                        <button class="btn"  data-title="Modify" data-toggle="modal" data-target="#modify" onclick="location.href='orderupdate.php';"> MODIFY</button>
+                        <button class="btn"  data-title="Modify" data-toggle="modal" data-target="#modify" onclick="location.href='ordermod.php';"> MODIFY</button>
                         <button class="btn "  data-title="Delete" data-toggle="modal" data-target="#delete" onclick="location.href='orderdelete.php';"> DELETE</button>
                     </div>
                 </div>

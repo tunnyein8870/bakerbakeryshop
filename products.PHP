@@ -45,6 +45,10 @@
                 <img src="images/admin.png" style="width:30px; height:30px">
             </i> ADMIN </a>
 
+            <a href="admin_payment.php" class="dashboard-nav-item active"><i class="fas fa-user">
+                <img src="images/payment.png" style="width:30px; height:30px">
+            </i> PAYMENT </a>
+
             <div class="nav-item-divider"></div>
             <a href="index.php" class="dashboard-nav-item">
             <i>

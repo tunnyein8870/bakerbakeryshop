@@ -23,7 +23,7 @@
                 <i><img src="images/dashboard.png" style="width:30px; height:30px"></i>
                 DASHBOARD </a>
 
-            <a href="admin_review.php" class="dashboard-nav-item">
+            <a href="admin_review.php" class="dashboard-nav-item active">
                 <i><img src="images/review.png" style="width:30px; height:30px"></i>
                  REVIEWS </a>
 
@@ -32,7 +32,7 @@
                     <img src="images/product.png" style="width:30px; height:30px">
                 </i> PRODUCTS </a>
 
-            <a href="customers.php" class="dashboard-nav-item "><i class="fas fa-user">
+            <a href="customers.php" class="dashboard-nav-item"><i class="fas fa-user">
                 <img src="images/customer.png" style="width:30px; height:30px">
             </i> CUSTOMERS </a>
 
@@ -40,11 +40,11 @@
                 <img src="images/order.png" style="width:30px; height:30px">
             </i> ORDERS </a>
 
-            <a href="admin.php" class="dashboard-nav-item active"><i class="fas fa-user">
+            <a href="admin.php" class="dashboard-nav-item"><i class="fas fa-user">
                 <img src="images/admin.png" style="width:30px; height:30px">
             </i> ADMIN </a>
 
-            <a href="admin_payment.php" class="dashboard-nav-item"><i class="fas fa-user">
+            <a href="admin_payment.php" class="dashboard-nav-item active"><i class="fas fa-user">
                 <img src="images/payment.png" style="width:30px; height:30px">
             </i> PAYMENT </a>
 
@@ -68,48 +68,53 @@
                     <div class='card-header'>
                         <h1>Admin Panel</h1>
                     </div>
-
                     <div class='card-body'>
                         <div class="card-body text-center">
-                            <h5 class="card-title m-b-0">View Admin List</h5>
-                        </div>
+                    <h5 class="card-title m-b-0">Order Confirm</h5>
+                </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone no</th>
-                                <th scope="col">City</th>
+                                <th scope="col">Payment ID</th>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Customer ID</th>
+                                <th scope="col">Payment Method</th>
+                                <th scope="col">Transaction ID</th>
+                                <th scope="col">Remark</th>
                             </tr>
                         </thead>
                         <tbody class="customtable">
-                            <?php
-                        $counter=1;
-                        include "connection.php";
-                        $viewquery = "SELECT * from admin";
-                        foreach ($dbconnection->query($viewquery) as $row) {
-                            $name = $row['aname'];
-                            $email = $row['aemail'];
-                            $address = $row['a_address'];
-                            $phone = $row['aphone_no'];
-                            $pass = $row['apassword'];
-                            $cpass = $row['aconfirm_pass'];
+                        <?php
+                            $counter = 1;
+                            include "connection.php";
+                            $viewquery = "SELECT * from payment where remark=''";
+                            foreach ($dbconnection->query($viewquery) as $row){
+                                $id = $row['payid'];
+                                $oi = $row['oid'];
+                                $am = $row['amount'];
+                                $ci = $row['cid'];
+                                $py = $row['payment'];
+                                $tr = $row['tranid'];
+                                $re = $row['remark'];
 
-                            echo"<tr>";
-                            echo"<td> $name </td>";
-                            echo"<td> $email </td>";
-                            echo"<td> $phone </td>";
-                            echo"<td> $address </td>";
-                            echo" </tr>";
-                        }
+                                echo"<tr>";
+                                echo"<td> $id </td>";
+                                echo"<td> $oi </td>";
+                                echo"<td> $am </td>";
+                                echo"<td> $ci </td>";
+                                echo"<td> $py </td>";
+                                echo"<td> $tr </td>";
+                                echo"<td> $re </td>";
+                                echo" </tr>";
+                            }
                         ?>
-                                                              
+
                         </tbody>
                     </table>
                 </div>
-                        <button class="btn"  data-title="Modify" data-toggle="modal" data-target="#modify" onclick="location.href='adminmod.php';"> MODIFY</button>
-                        <button class="btn "  data-title="Delete" data-toggle="modal" data-target="#delete" onclick="location.href='admindelete.php';"> DELETE</button>
+                <button class="btn"  data-title="Confirm order" data-toggle="modal" data-target="#modify" onclick="location.href='coceorder.php';"> Confirm and Cancel Order</button>
                     </div>
                 </div>
             </div>

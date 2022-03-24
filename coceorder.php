@@ -32,7 +32,7 @@
                     <img src="images/product.png" style="width:30px; height:30px">
                 </i> PRODUCTS </a>
 
-            <a href="customers.php" class="dashboard-nav-item "><i class="fas fa-user">
+            <a href="customers.php" class="dashboard-nav-item active"><i class="fas fa-user">
                 <img src="images/customer.png" style="width:30px; height:30px">
             </i> CUSTOMERS </a>
 
@@ -40,7 +40,7 @@
                 <img src="images/order.png" style="width:30px; height:30px">
             </i> ORDERS </a>
 
-            <a href="admin.php" class="dashboard-nav-item active"><i class="fas fa-user">
+            <a href="admin.php" class="dashboard-nav-item"><i class="fas fa-user">
                 <img src="images/admin.png" style="width:30px; height:30px">
             </i> ADMIN </a>
 
@@ -70,7 +70,7 @@
                     </div>
                     <div class='card-body'>
                         <div class="card-body text-center">
-                            <h5 class="card-title m-b-0">Admin Data Update</h5>
+                            <h5 class="card-title m-b-0">Order Confirm and Cancel</h5>
                         </div>
                     <!-- search bar -->
                     <div class="col-md-4">
@@ -79,57 +79,61 @@
                                 <img src="images/search1.png" style="width:20px; height:20px; margin-top:10px; margin-left: 5px;">
                             </i> 
                         <form method="post" action="">
-                            <input type="text" class="form-control" placeholder="Enter Name to Search..." name="admName">
+                            <input type="text" class="form-control" placeholder="Enter Payment ID to Search..." name="prodName">
                             <button class="btn btn-primary" name="Search">Search</button> 
                         </form>
                         </div>
                     </div>
                     <?php
                     if(isset($_POST["Search"])){
-                        $an = $_POST["admName"];
+                        $an = $_POST["prodName"];
                         include 'connection.php';
-                        $sql = "SELECT * From admin where aname='$an'";
+                        $sql = "SELECT * From payment where payid='$an'";
 
                         foreach ($dbconnection->query($sql) as $row){
 
                         echo "<form class='updateform' method='post'>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin ID</label>";
-                        echo "<input class='form-control' type='text' name='uid' value='".$row['aid']."'>";
+                        echo "<label for='exampleInputEmail1'>Payment ID</label>";
+                        echo "<input class='form-control' type='text' name='uid' value='".$row['payid']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Name</label>";
-                        echo "<input class='form-control' type='text' name='uname' value='".$row['aname']."'>";
+                        echo "<label for='exampleInputEmail1'>Order ID</label>";
+                        echo "<input class='form-control' type='text' name='uname' value='".$row['oid']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Email</label>";
-                        echo "<input class='form-control' type='text' name='uemail' value='".$row['aemail']."' required>";
+                        echo "<label for='exampleInputEmail1'>Total Amount</label>";
+                        echo "<input class='form-control' type='text' name='uemail' value='".$row['amount']."' required>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Password</label>";
-                        echo "<input class='form-control' type='text' name='upassword' value='".$row['apassword']."' required>";
+                        echo "<label for='exampleInputEmail1'>Customer ID</label>";
+                        echo "<input class='form-control' type='text' name='upassword' value='".$row['cid']."' required>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Confirm Password</label>";
-                        echo "<input class='form-control' type='text' name='upassword-repeat' value='".$row['aconfirm_pass']."' required>";
+                        echo "<label for='exampleInputEmail1'>Payment Method</label>";
+                        echo "<input class='form-control' type='text' name='uphone' value='".$row['payment']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Phone No</label>";
-                        echo "<input class='form-control' type='text' name='uphone' value='".$row['aphone_no']."'>";
+                        echo "<label for='exampleInputEmail1'>Transaction ID</label>";
+                        echo "<input class='form-control' type='text' name='ucity' value='".$row['tranid']."'>";
                         echo "</div>";
                         echo "<div class='form-group'>";
-                        echo "<label for='exampleInputEmail1'>Admin Address</label>";
-                        echo "<input class='form-control' type='text' name='uaddress' value='".$row['a_address']."'>";
+                        echo "<label for='exampleInputEmail1'>Remark</label>";
+                        echo "<input class='form-control' type='text' name='uaddress' value='".$row['remark']."'>";
                         echo "</div>";
                         echo "<div class='text-center'>";
-                        echo "<button class='btn btn-success btn-block' type='submit' name='update'>Update</button>";
+                        echo "<button class='btn btn-success btn-block' type='submit' name='confirm'>Confirm Payment</button>";
+                        echo "</div>";
+                        echo "<div class='text-center'>";
+                        echo "<button class='btn btn-success btn-block' type='submit' name='cancel'>Cancel Order</button>";
                         echo "</div>";
                         echo "</form>";
                         }
                     }
                 ?>
 
-</div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,26 +147,40 @@
         </footer>
     </div>
 </div>
+
 <?php
-    if(isset($_POST["update"])){
+    if(isset($_POST["confirm"])){
         include('connection.php');
         $admid = $_POST['uid'];
         $admname = $_POST['uname'];
         $admemail = $_POST['uemail'];
         $admpassword = $_POST['upassword'];
-        $admcpassword = $_POST['upassword-repeat'];
         $admphone = $_POST['uphone'];
-        $admaddress = $_POST['uaddress'];
+        $admcity = $_POST['ucity'];
+        $admaddress = "Confirm";
         
-        $sql="UPDATE admin SET aname=\"$admname\", aemail=\"$admemail\", a_address=\"$admaddress\", aphone_no=\"$admphone\", apassword=\"$admpassword\", aconfirm_pass=\"$admcpassword\" Where aid=\"$admid\"";   
+        $sql="UPDATE payment SET oid=\"$admname\", amount=\"$admemail\", cid=\"$admpassword\", payment=\"$admphone\", tranid=\"$admcity\", remark=\"$admaddress\" Where payid=\"$admid\"";   
         if($dbconnection->query($sql) === TRUE) {
-            echo "<script>alert('Data Updated Successfully.!')</script>";
-          echo "<script>window.location = 'admin.php'</script>";
+            echo "<script>alert('Payment Confirm.!')</script>";
+          echo "<script>window.location = 'admin_payment.php'</script>";
           } 
           else {
-               echo "Error Updating Data: " . $dbconnection->error;
+               echo "Error Confim Payment: " . $dbconnection->error;
           }
       }
+      if(isset($_POST["cancel"])){
+        include('connection.php');
+        $aid=$_POST["uid"];
+        $sql="DELETE from payment Where payid=\"$aid\"";
+        if($dbconnection->query($sql) === TRUE) {
+            echo "<script>alert('Cancel Order Successfully.!')</script>";
+          echo "<script>window.location = 'admin_payment.php'</script>";
+          } 
+          else {
+               echo "Error Canceling Data: " . $dbconnection->error;
+          }
+        
+    }
 
 ?>
 <script type="text/javascript">
@@ -189,5 +207,3 @@ $(document).ready(function () {
 </body>
 </html>
 
-
-                

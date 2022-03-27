@@ -1,6 +1,8 @@
 <?php
     include ('connection.php');
     include('header.php');
+    $qty = 1;
+    $_SESSION['qty'] = $qty;
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +36,8 @@
       <form action="shop.php" method="post">
           <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
           <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
-      </form>
+          <input type='hidden'style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+        </form>
     </div>
   </div>
   <?php
@@ -67,7 +70,8 @@
       <form action="shop.php" method="post">
           <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
           <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
-      </form>
+          <input type='hidden'style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+        </form>
     </div>
   </div>
   <?php
@@ -100,7 +104,8 @@
       <form action="shop.php" method="post">
           <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
           <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
-      </form>
+          <input type='hidden'style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+        </form>
     </div>
   </div>
   <?php
@@ -134,7 +139,8 @@
       <form action="shop.php" method="post">
           <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
           <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
-      </form>
+          <input type='hidden'style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+        </form>
     </div>
   </div>
   <?php

@@ -119,11 +119,11 @@
                 <div class="panel-body">
                 
                 
-                  <input class='form-control' type='text' name='convo' value='' placeholder="Give Your Review">;
+                  <input class='form-control' type='text' name='convo' value='' placeholder="Give Your Review">
                   
                     <br>
-                    <p>Customer Name</p>
-                    
+                    <p><?php echo "$uname";?></p>
+
                     <button type="submit" class="btn btn-info pull-right" name='review_post'>Post</button>
                     </form>
                     <div class="clearfix"></div>

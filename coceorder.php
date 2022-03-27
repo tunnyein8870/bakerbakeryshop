@@ -107,7 +107,7 @@
                         echo "</div>";
                         echo "<div class='form-group'>";
                         echo "<label for='exampleInputEmail1'>Customer ID</label>";
-                        echo "<input class='form-control' type='text' name='upassword' value='".$row['cid']."' required>";
+                        echo "<input class='form-control' type='text' name='upassword' value='".$row['uid']."' required>";
                         echo "</div>";
                         echo "<div class='form-group'>";
                         echo "<label for='exampleInputEmail1'>Payment Method</label>";
@@ -159,7 +159,7 @@
         $admcity = $_POST['ucity'];
         $admaddress = "Confirm";
         
-        $sql="UPDATE payment SET oid=\"$admname\", amount=\"$admemail\", cid=\"$admpassword\", payment=\"$admphone\", tranid=\"$admcity\", remark=\"$admaddress\" Where payid=\"$admid\"";   
+        $sql="UPDATE payment SET oid=\"$admname\", amount=\"$admemail\", uid=\"$admpassword\", payment=\"$admphone\", tranid=\"$admcity\", remark=\"$admaddress\" Where payid=\"$admid\"";   
         if($dbconnection->query($sql) === TRUE) {
             echo "<script>alert('Payment Confirm.!')</script>";
           echo "<script>window.location = 'admin_payment.php'</script>";
@@ -170,16 +170,22 @@
       }
       if(isset($_POST["cancel"])){
         include('connection.php');
-        $aid=$_POST["uid"];
-        $sql="DELETE from payment Where payid=\"$aid\"";
+        $admid = $_POST['uid'];
+        $admname = $_POST['uname'];
+        $admemail = $_POST['uemail'];
+        $admpassword = $_POST['upassword'];
+        $admphone = $_POST['uphone'];
+        $admcity = $_POST['ucity'];
+        $admaddress = "Cancel";
+        
+        $sql="UPDATE payment SET oid=\"$admname\", amount=\"$admemail\", uid=\"$admpassword\", payment=\"$admphone\", tranid=\"$admcity\", remark=\"$admaddress\" Where payid=\"$admid\"";   
         if($dbconnection->query($sql) === TRUE) {
-            echo "<script>alert('Cancel Order Successfully.!')</script>";
+            echo "<script>alert('Payment Cancel.!')</script>";
           echo "<script>window.location = 'admin_payment.php'</script>";
           } 
           else {
-               echo "Error Canceling Data: " . $dbconnection->error;
+               echo "Error Confim Payment: " . $dbconnection->error;
           }
-        
     }
 
 ?>

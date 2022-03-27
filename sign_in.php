@@ -18,7 +18,8 @@
           else {            
               while ($row = mysqli_fetch_assoc($login_result)) {
                 if($row['uemail'] == $_POST['email'] && $row['upassword'] == $_POST['password']){
-                    $_SESSION['uname'] = $row['uname'];                      
+                    $_SESSION['uname'] = $row['uname'];   
+                    $_SESSION['uid'] = $row['uid'];                   
                     $_SESSION['uemail'] = $row['uemail'];
                     $usr = $_SESSION['uname'];
                     $_SESSION['password'] = $_POST['password'];

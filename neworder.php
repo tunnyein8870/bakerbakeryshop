@@ -94,7 +94,7 @@
                                 $id = $row['payid'];
                                 $oi = $row['oid'];
                                 $am = $row['amount'];
-                                $ci = $row['cid'];
+                                $ci = $row['uid'];
                                 $py = $row['payment'];
                                 $tr = $row['tranid'];
                                 $re = $row['remark'];

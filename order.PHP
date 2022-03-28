@@ -88,6 +88,7 @@
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
+                                <th scope="col">Order ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Product</th>
                                 <th scope="col">Quantity</th>
@@ -95,22 +96,61 @@
                                 <th scope="col">Address</th>
                                 <th scope="col">O-Date</th>
                                 <th scope="col">Total</th>
-
+                                <th scope="col">Order Status</th>
                             </tr>
                         </thead>
                         <tbody class="customtable">
-                            <tr>
+                        <?php
+                            $counter = 1;
+                            include "connection.php";
+                            $viewquery = "SELECT * from orders";
+                            foreach ($dbconnection->query($viewquery) as $row){
+                                $oid = $row['oid'];
+                                $odate = $row['odate'];
+                                $uid = $row['uid'];
+                                //echo "$oid";
+                                $viewquery1 = "SELECT * from user where uid='$uid'";
+                                foreach ($dbconnection->query($viewquery1) as $row){
+                                    $uname = $row['uname'];
+                                    $uphone = $row['uphone'];
+                                    $uaddr = $row['uaddress'];
+                                    
+                                    $viewquery2 = "SELECT * from order_line where oid='$oid'";
+                                    foreach ($dbconnection->query($viewquery2) as $row){
+                                        $qty = $row['qty'];
+                                        $pid = $row['pid'];
 
-                                <td>Zoro</td>
-                                <td>Toast</td>
-                                <td>2</td>
-                                <td>0964345567</td>
-                                <td>St120</td>
-                                <td>18.3.2022</td>
-                                <td>2000Ks</td>
+                                        $viewquery3 = "SELECT * from product where pid='$pid'";
+                                        foreach ($dbconnection->query($viewquery3) as $row){
+                                        $pname = $row['pname'];
 
-                            </tr>
-                            
+
+                                            $viewquery4 = "SELECT * from payment where oid='$oid'";
+                                            foreach ($dbconnection->query($viewquery4) as $row){
+                                            $total = $row['amount'];
+                                            $status = $row['remark'];
+
+                                            echo"<tr>";
+                                            echo"<td> $oid </td>";
+                                            echo"<td> $uname </td>";
+                                            echo"<td> $pname </td>";
+                                            echo"<td> $qty </td>";
+                                            echo"<td> $uphone </td>";
+                                            echo"<td> $uaddr </td>";
+                                            echo"<td> $odate </td>";
+                                            echo"<td> $total </td>";
+                                            echo"<td> $status </td>";
+                                            echo" </tr>";                                                
+                                            }
+                                        }
+                                    
+                                    }
+                                }
+
+
+                                
+                            }
+                        ?>
                                                               
                         </tbody>
                     </table>

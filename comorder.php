@@ -62,6 +62,7 @@
             <img src="images/menu.png" style="width:20px; height: 20px;"> <span style="font-size: 20px; color: black; padding-left: 50px;">Admin</span>
             </a>
         </header>
+
         <div class='dashboard-content'>
             <div class='container'>
                 <div class='card'>
@@ -119,6 +120,7 @@
                 </div>
             </div>
         </div>
+        
         <footer class="bg-light text-center text-lg-start">
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

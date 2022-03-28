@@ -12,11 +12,12 @@ if (isset($_POST['ac'])) {
         if (isset($_SESSION['cart'])) {
             $item_array_id = array_column($_SESSION['cart'], "pid");
             if (in_array($_POST['id'], $item_array_id)) {
-                echo "<script>alert('Product is already added in the cart..!')</script>";
+                echo "<script>alert('Product is already added in the cart..!')</script>";    
             } else {
-                $count = count($_SESSION['cart']);
-                $item_array = array('pid' => $_POST['id']);
-                $_SESSION['cart'][$count] = $item_array;
+                // $count = count($_SESSION['cart']);
+                // $item_array = array('pid' => $_POST['id']);
+                // $_SESSION['cart'][$count] = $item_array;
+                echo "<script>alert('Please Order First')</script>";    
             }
         } 
         else {

@@ -74,7 +74,7 @@
                         </div>
 
                     <!-- search bar -->
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <div class="search"> 
                                 <i class="fa fa-search">
                                     <img src="images/search1.png" style="width:20px; height:20px; margin-top:10px; margin-left: 5px;">
@@ -82,7 +82,7 @@
                                 <input type="text" class="form-control" placeholder="Enter Name to Search...">
                                 <button class="btn btn-primary">Search</button> 
                             </div>
-                        </div>
+                        </div> -->
 
                 <div class="table-responsive">
                     <table class="table">
@@ -155,8 +155,8 @@
                         </tbody>
                     </table>
                 </div>
-                        <button class="btn"  data-title="Modify" data-toggle="modal" data-target="#modify" onclick="location.href='ordermod.php';"> MODIFY</button>
-                        <button class="btn "  data-title="Delete" data-toggle="modal" data-target="#delete" onclick="location.href='orderdelete.php';"> DELETE</button>
+                        <!-- <button class="btn"  data-title="Modify" data-toggle="modal" data-target="#modify" onclick="location.href='ordermod.php';"> MODIFY</button>
+                        <button class="btn "  data-title="Delete" data-toggle="modal" data-target="#delete" onclick="location.href='orderdelete.php';"> DELETE</button> -->
                     </div>
                 </div>
             </div>

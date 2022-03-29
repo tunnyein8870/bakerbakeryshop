@@ -62,23 +62,23 @@
             <img src="images/menu.png" style="width:20px; height: 20px;"> <span style="font-size: 20px; color: black; padding-left: 50px;">Admin</span>
             </a>
         </header>
+
         <div class='dashboard-content'>
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h1>Admin panel</h1>
+                        <h1>Admin Panel</h1>
                     </div>
                     <div class='card-body'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <button class="btn" onclick="location.href='customerdash.php';"> Customer Order Chart</button>
+                    <button class="btn " onclick="location.href='productdash.php';"> Product Sale Chart</button>
+                    <button class="btn " onclick="location.href='productdash.php';"> Weekly Sale</button>
+                    <button class="btn " onclick="location.href='productdash.php';"> Monthly Sale</button>
                     </div>
                 </div>
             </div>
         </div>
+        
                 <footer class="bg-light text-center text-lg-start">
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

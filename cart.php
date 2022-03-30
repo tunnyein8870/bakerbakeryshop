@@ -78,106 +78,56 @@ if (isset($_POST['remove'])) {
                     </div>
                     <?php
                     if (isset($_SESSION['cart'])) {
-                        $productid = array_column($_SESSION['cart'], 'pid');
-                        // $key = array_search($_GET['id'], $productid);
-                        // if ($key === false){
-                        //   $item_array = array(
-                        //     'item_quantity' => $_POST['quantity'],
-                        //   );
-                        //   $_SESSION['cart'][] = $item_array;
-                        // }
-                        // else{
-                        //   $_SESSION['cart']['key']["item_quantity"] += $_POST['quantity'];
-                        // }
-                        $quantity = array_column($_SESSION['cart'], 'qty');
-                        $item_sql = "SELECT * FROM product";
-                        $item_result = mysqli_query($dbconnection, $item_sql);
+
+                        foreach ($_SESSION['cart'] as $id => $array){
+                            $pid = $_SESSION['cart'][$id]['pid'];
+                            $qty = $_SESSION['cart'][$id]['qty'];
+                            if (isset($_POST['quantity'.$pid])){
+                              $qty = $_POST['quantity'.$pid];
+                              echo $qty;
+                              $_SESSION['cart'][$id]['qty'] = $qty;
+                            }
+                            $item_sql = "SELECT * from product where pid=$pid";
+                            $item_result = mysqli_query($dbconnection, $item_sql);
+                            
+                            
                         while ($row = mysqli_fetch_assoc($item_result)) {
-                            $pid = $row['pid'];
-                            $varpname = $row['pname'];
-                            $varcategories = $row['categories'];
-                            $varpingredient = $row['pingredient'];
-                            $varpprice = $row['pprice'];
-                            $varimage = $row['image'];
-                            foreach ($productid as $id) {
-                                if ($pid == $id) {
-                                    if (isset($_POST['qty'])) {
-                                        foreach ($_SESSION['cart'] as $key => $value) {
-                                            if ($value["pid"] == $_GET['id']) {
-                                                $qty = $_POST['qty'];
-                                            }
-                                        }
-                                    }
-                                    $price = $qty * $varpprice;
-                                    $total = $total + (float)$price;
+                                    $price = $row['pprice'];
+                                    $total = $total + $price*$qty;
                                     $total_amount = $total + 500;
-                                    // echo $qty;
-                                    // echo "<br>";
-                                    // echo $total;
-                                    // echo "<br>";
-                                    // $ava = "";
-                                    // $tranid = 1;
-                                    $tranid = $_POST['tranid'] ?? "";
-                                    $method = $_POST['ava'] ?? "";;
-                                    // echo $trid;
-                                    // echo "<br>";
-                                    // echo $method;
-                                    if (isset($_POST['confirm'])) {
-                                        $uid = $_SESSION['uid'];
-                                        $odate =  date("Y/m/d");
-                                        $order_sql = "INSERT INTO orders (odate,uid) VALUES (\"$odate\",\"$uid\")";
-                                        $dbconnection->query($order_sql);
-                                        $OID = mysqli_insert_id($dbconnection);
-                                        //echo $OID;
-
-                                        $order_sql2 = "INSERT INTO order_line (oid,pid,qty,total_amount) VALUES (\"$OID\",\"$pid\",\"$qty\",\"$price\")";
-                                        $dbconnection->query($order_sql2);
-
-                                        $order_sql3 = "INSERT INTO payment (oid,amount,uid,payment,tranid) VALUES (\"$OID\",\"$total_amount\",\"$uid\",\"$method\",\"$tranid\")";
-                                        if ($dbconnection->query($order_sql3) === TRUE) {
-                                            echo "<script>alert('Your Order Done.! Please wait for admin confirm order')</script>";
-                                            echo "<script>window.location = 'shop.php'</script>";
-                                            session_destroy();
-                                        } else {
-                                            echo "Error Confim Payment: " . $dbconnection->error;
-                                        }
-                                    }
-
-                                    $price =  $qty * $varpprice;
+                                    
 
                     ?>
-                                    <form action='cart.php?action=remove&id=<?php echo $pid ?>&cart.php#checkout' method="post">
+                                    <form action='cart.php?action=remove&id=<?php echo $row['pid'] ?>&cart.php#checkout' method="post">
                                         <div class="card mb-4" id="cartresult">
                                             <div class="card-body p-4">
 
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
-                                                        <img src="Products/<?php echo $varimage ?>" class="img-fluid" alt="Product Images" style="width:100px; height:100px;">
+                                                        <img src="Products/<?php echo $row['image'] ?>" class="img-fluid" alt="Product Images" style="width:100px; height:100px;">
                                                     </div>
                                                     <div class="col-md-2 d-flex justify-content-center">
                                                         <div>
-                                                            <p class="lead fw-normal mb-0"><?php echo $varpname ?></p>
+                                                            <p class="lead fw-normal mb-0"><?php echo $row['pname'] ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-1 d-flex justify-content-center">
                                                         <div>
-                                                            <p class="lead fw-normal mb-0"><?php echo $varcategories ?></p>
+                                                            <p class="lead fw-normal mb-0"><?php echo $row['categories'] ?></p>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-2 d-flex justify-content-center">
                                                         <div>
-                                                            <p class="lead fw-normal mb-0">
-                                                                <input type="text" name="price" class="price" value="<?php echo $varpprice ?>" disabled>
-                                                            </p>
+                                                            <p class="lead fw-normal mb-0"><?php echo $row['pprice'] ?></p>
                                                         </div>
                                                     </div>
                                                     
                                                         <div class="col-md-2 d-flex justify-content-center">
                                                             <div class="btn-container">
                                                                 <p class="lead fw-normal mb-0">
-                                                                    <input type='number' min='1' name='qty' class="qty" value=<?php echo $qty ?>>
-                                                                    <input type='hidden' name='quantity' value=<?php  ?>>
+                                                                <input type="number" name="quantity<?php echo $pid ?>" step="1" value="<?php echo $qty ?>">
+                        
                                                                     <button type='submit' name="chqty">
                                                                         <img src="images/check.png" alt="Change Qty" style="width:19px; height:15px;">
                                                                     </button>
@@ -188,7 +138,7 @@ if (isset($_POST['remove'])) {
                                                     <div class="col-md-2 d-flex justify-content-center">
                                                         <div>
                                                             <p class="lead fw-normal mb-0">
-                                                                <input type="text" name="amount" class="amount" value="<?php echo $price ?>" disabled>
+                                                                <input type="text" name="amount" class="amount" value="<?php echo $price*$qty ?>" disabled>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -207,9 +157,13 @@ if (isset($_POST['remove'])) {
                                         </div>
                                     
                     <?php
+                    
                                 }
+                                
+                                   
+                                
                             }
-                        }
+                       
                     } else {
                         echo "cart is empty";
                     }
@@ -217,7 +171,7 @@ if (isset($_POST['remove'])) {
 
                     <div class="card mb-5">
                         <div class="card-body p-4">
-
+                            
                             <div class="float-end">
                                 <p class="mb-0 me-5 d-flex align-items-center">
                                     <span class="small text-muted me-2">Order total:</span> <span class="total lead fw-normal" id="total"><?php echo $total ?></span><span>Ks</span>
@@ -228,7 +182,7 @@ if (isset($_POST['remove'])) {
 
                     <div class="d-flex justify-content-end">
                         <a href="shop.php" class="sh">&lt;&nbsp; Continue Shopping</a>
-                        <button type="button" class="btn btn-primary btn-lg" onclick="location.href='#checkout';">Checkout</button>
+                        <!-- <button type="button" class="btn btn-primary btn-lg" onclick="location.href='#checkout';">Checkout</button> -->
                     </div>
 
                 </div>
@@ -291,6 +245,44 @@ if (isset($_POST['remove'])) {
                     </div>
                 </form>
                 <!--       </div> -->
+
+                <?php
+                    if (isset($_POST['confirm'])) {
+                                        
+                        $uid = $_SESSION['uid'];
+                        $odate =  date("Y/m/d");
+                        $order_sql = "INSERT INTO orders (odate,uid) VALUES (\"$odate\",\"$uid\")";
+                        $dbconnection->query($order_sql);
+                        $OID = mysqli_insert_id($dbconnection);
+                        //echo $OID;
+    
+                        // $order_sql2 = "INSERT INTO order_line VALUES (?,?,?,?)";
+                        // $stmt=$dbconnection->prepare($order_sql2);
+                        // while ($row = mysqli_fetch_assoc($item_result)) {     
+                        //     $stmt->bindValue(1, $OID);
+                        //     $stmt->bindValue(2, $pid);
+                        //     $stmt->bindValue(3, $qty);
+                        //     $stmt->bindValue(4, $price);
+                        //     $stmt->execute();
+                        // }
+                          
+                            $order_sql2 = "INSERT INTO order_line (oid,pid,qty,total_amount) VALUES (\"$OID\",\"$pid\",\"$qty\",\"$price\")";
+                            $dbconnection->query($order_sql2);
+                        
+
+                        $tranid = $_POST['tranid'] ?? "";
+                        $method = $_POST['ava'] ?? "";;
+                        $order_sql3 = "INSERT INTO payment (oid,amount,uid,payment,tranid) VALUES (\"$OID\",\"$total_amount\",\"$uid\",\"$method\",\"$tranid\")";
+                        if ($dbconnection->query($order_sql3) === TRUE) {
+                            echo "<script>alert('Your Order Done.! Please wait for admin confirm order')</script>";
+                            echo "<script>window.location = 'shop.php'</script>";
+                            session_destroy();
+                        } else {
+                            echo "Error Confim Payment: " . $dbconnection->error;
+                        }
+                    }
+                ?>
+
             </section>
         </main>
 

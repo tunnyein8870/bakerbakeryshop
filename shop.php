@@ -2,7 +2,6 @@
     include ('connection.php');
     include('header.php');
     $qty = 1;
-    $_SESSION['qty'] = $qty;
 ?>
 
 <!DOCTYPE html>

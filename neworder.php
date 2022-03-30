@@ -23,7 +23,7 @@
                 <i><img src="images/dashboard.png" style="width:30px; height:30px"></i>
                 DASHBOARD </a>
 
-            <a href="admin_review.php" class="dashboard-nav-item active">
+            <a href="admin_review.php" class="dashboard-nav-item">
                 <i><img src="images/review.png" style="width:30px; height:30px"></i>
                  REVIEWS </a>
 
@@ -114,7 +114,7 @@
                         </tbody>
                     </table>
                 </div>
-                <button class="btn"  data-title="Confirm order" data-toggle="modal" data-target="#modify" onclick="location.href='coceorder.php';"> Confirm and Cancel Order</button>
+                <button class="btn"  data-title="Confirm order" data-toggle="modal" data-target="#modify" onclick="location.href='coceorder.php';">New Order Check</button>
                     </div>
                 </div>
             </div>

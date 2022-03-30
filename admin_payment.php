@@ -23,7 +23,7 @@
                 <i><img src="images/dashboard.png" style="width:30px; height:30px"></i>
                 DASHBOARD </a>
 
-            <a href="admin_review.php" class="dashboard-nav-item active">
+            <a href="admin_review.php" class="dashboard-nav-item">
                 <i><img src="images/review.png" style="width:30px; height:30px"></i>
                  REVIEWS </a>
 

@@ -20,7 +20,7 @@
         </header>
 
         <nav class="dashboard-nav-list">
-            <a href="admindashboard.php" class="dashboard-nav-item active">
+            <a href="admindashboard.php" class="dashboard-nav-item">
                 <i><img src="images/dashboard.png" style="width:30px; height:30px"></i>
                 DASHBOARD </a>
 
@@ -28,7 +28,7 @@
                 <i><img src="images/review.png" style="width:30px; height:30px"></i>
                  REVIEWS </a>
 
-            <a href="products.php" class="dashboard-nav-item">
+            <a href="products.php" class="dashboard-nav-item active">
                 <i class="fas fa-cogs">
                     <img src="images/product.png" style="width:30px; height:30px">
                 </i> PRODUCTS </a>
@@ -45,7 +45,7 @@
                 <img src="images/admin.png" style="width:30px; height:30px">
             </i> ADMIN </a>
 
-            <a href="admin_payment.php" class="dashboard-nav-item active"><i class="fas fa-user">
+            <a href="admin_payment.php" class="dashboard-nav-item"><i class="fas fa-user">
                 <img src="images/payment.png" style="width:30px; height:30px">
             </i> PAYMENT </a>
 

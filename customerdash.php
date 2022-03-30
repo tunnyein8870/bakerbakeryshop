@@ -19,7 +19,7 @@
         </header>
 
         <nav class="dashboard-nav-list">
-            <a href="admindashboard.php" class="dashboard-nav-item">
+            <a href="admindashboard.php" class="dashboard-nav-item active">
                 <i><img src="images/dashboard.png" style="width:30px; height:30px"></i>
                 DASHBOARD </a>
 
@@ -32,7 +32,7 @@
                     <img src="images/product.png" style="width:30px; height:30px">
                 </i> PRODUCTS </a>
 
-            <a href="customers.php" class="dashboard-nav-item active"><i class="fas fa-user">
+            <a href="customers.php" class="dashboard-nav-item"><i class="fas fa-user">
                 <img src="images/customer.png" style="width:30px; height:30px">
             </i> CUSTOMERS </a>
 
@@ -44,7 +44,7 @@
                 <img src="images/admin.png" style="width:30px; height:30px">
             </i> ADMIN </a>
 
-            <a href="admin_payment.php" class="dashboard-nav-item active"><i class="fas fa-user">
+            <a href="admin_payment.php" class="dashboard-nav-item"><i class="fas fa-user">
                 <img src="images/payment.png" style="width:30px; height:30px">
             </i> PAYMENT </a>
 
@@ -70,9 +70,13 @@
                     </div>
 
                     <div class='card-body'>
-                        <!-- <div class="card-body text-center">
-                            <h5 class="card-title m-b-0">View Customer Income</h5>
-                        </div> -->
+                        
+                    <div class="card-body text-center">
+                            <h5 class="card-title m-b-0">Customer Order Chart</h5>
+                        </div>
+                    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+                         
                 <!-- <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-light">
@@ -90,9 +94,7 @@
                         var chart = new CanvasJS.Chart("chartContainer", {
 	                    theme: "light1", // "light2", "dark1", "dark2"
 	                    animationEnabled: true, // change to true		
-	                    title:{
-		                text: "Customer Order Rate Chart"
-	                    },
+	                   
 	                    data: [
 	                    {
 		                // Change type to "bar", "area", "spline", "pie",etc.
@@ -112,7 +114,7 @@
                             foreach ($dbconnection->query($viewquery1) as $row) {
                                 $UID = $row['uid'];
                                 if($UID == $uid){
-                                    $oqty++;
+                                    
                                 }
                             }
                             $viewquery2 = "SELECT * from payment where uid='$uid'";
@@ -124,12 +126,13 @@
                                 if($UID == $uid){
                                     if($rm == "Confirm"){
                                         $toam = $toam + $am;
+                                        $oqty++;
                                     }
                                 }
                                 
                                 
                             }
-                            echo"{ label: '$name',  y: $oqty  },";
+                            echo"{ label: '$name',  y: $oqty, x: $toam},";
                             // echo"<tr>";
                             // echo"<td> $name </td>";
                             // echo"<td> $oqty </td>";
@@ -166,8 +169,7 @@
         </div>
         <footer class="bg-light text-center text-lg-start">
             <!-- Copyright -->
-            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+            
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
               © 2022 Copyright:
               <a class="text-dark" href="https://mdbootstrap.com/">Designed and Developed by Group 6</a>

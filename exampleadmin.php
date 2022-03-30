@@ -1,36 +1,9 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<script type="text/javascript">
-window.onload = function () {
+<?php
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	theme: "light1", // "light2", "dark1", "dark2"
-	animationEnabled: true, // change to true		
-	title:{
-		text: "Basic Column Chart"
-	},
-	data: [
-	{
-		// Change type to "bar", "area", "spline", "pie",etc.
-		type: "column",
-		dataPoints: [
-			{ label: "apple",  y: 10  },
-			{ label: "orange", y: 15  },
-			{ label: "banana", y: 25  },
-			{ label: "mango",  y: 30  },
-			{ label: "grape",  y: 28  }
-		]
-	}
-	]
-});
-chart.render();
-
+for($i = 1; $i < 12; $i++) {
+    $dofm = cal_days_in_month(CAL_GREGORIAN, $i, 2022);
+	echo "$dofm <br>";
+	
 }
-</script>
-</head>
-<body>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
-</body>
-</html>
+
+?>

@@ -72,7 +72,7 @@
                     <div class='card-body'>
                     
                     <div class="card-body text-center">
-                            <h5 class="card-title m-b-0">Product Quantity Sale Chart</h5>
+                            <h5 class="card-title m-b-0">Daily Sale</h5>
                         </div>
 
                     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
@@ -94,38 +94,39 @@
 		                    dataPoints: [
 
                                 <?php
-                        $counter=0;
-                        include "connection.php";
-                        $viewquery = "SELECT * from product";
-                        foreach ($dbconnection->query($viewquery) as $row) {
-                            $name = $row['pname'];
-                            $Pid = $row['pid'];
-                            $oqty = 0;
-
-                            $viewquery1 = "SELECT * from payment";
-                            foreach ($dbconnection->query($viewquery1) as $row) {
-                                $oid = $row['oid'];
-                                $rmk = $row['remark'];
-
-                                if($rmk=='Confirm'){
-
-                                    $viewquery2 = "SELECT * from order_line where oid='$oid'";
-                                    foreach ($dbconnection->query($viewquery2) as $row) {
-                                        $pqty = $row['qty'];
-                                        $pid = $row['pid'];
-
-                                        if($pid==$Pid){
-                                            $oqty = $oqty + $pqty;
-                                        }
-                                        
-                                    }
-                            }
-
-                            }
-                            if($oqty!==0){
-                                echo"{ label: '$name',  y: $oqty  },";
+                        if(date('D')!='Mon')
+                        {    
+                         //take the last monday
+                          $staticstart = date('Y-m-d',strtotime('last Monday'));    
+                        
+                        }else{
+                            $staticstart = date('Y-m-d');   
                         }
+                        // echo $staticstart;
+                        
+                        for($a=0; $a<=6; $a++){
+                            $day = date('Y-m-d',strtotime("$staticstart +$a days"));
+                            // echo $day;
+                            // echo "<br>";
+                            $oty = 0;
+                            include "connection.php";
+                            $viewquery = "SELECT * from orders where odate='$day'";
+                            foreach ($dbconnection->query($viewquery) as $row) {
+                            $oid = $row['oid'];
+                            $viewquery1 = "SELECT * from payment where oid='$oid'";
+                            foreach ($dbconnection->query($viewquery1) as $row) {
+                                $rmk = $row['remark'];
+                                if($rmk == 'Confirm'){
+                                    $oty++;
+                                }
+                            }
+                            
                     }
+                                echo"{ label: '$day',  y: $oty  },";
+
+                        }
+                        
+
                         ?>
 		                ]
 	                }

@@ -10,6 +10,7 @@ if (isset($_POST['remove'])) {
         foreach ($_SESSION['cart'] as $key => $value) {
             if ($value["pid"] == $_GET['id']) {
                 unset($_SESSION['cart'][$key]);
+                $_SESSION['cart'] = array_values($_SESSION['cart']);
                 echo "<script>alert('Product has been Removed...!')</script>";
                 header('location:cart.php');
             }
@@ -93,6 +94,10 @@ if (isset($_POST['remove'])) {
                             
                             
                         while ($row = mysqli_fetch_assoc($item_result)) {
+                            $image = $row['image'];
+                                $pname = $row['pname'];
+                                $categories = $row['categories'];
+
                                     $price = $row['pprice'];
                                     $total1 = $price*$qty;
                                     $total = $total + $price*$qty;
@@ -129,28 +134,28 @@ if (isset($_POST['remove'])) {
                                      }
                                 
                     ?>
-                                    <form action='cart.php?action=remove&id=<?php echo $row['pid'] ?>&cart.php#checkout' method="post">
+                                    <form action='cart.php?action=remove&id=<?php echo $pid ?>&cart.php#checkout' method="post">
                                         <div class="card mb-4" id="cartresult">
                                             <div class="card-body p-4">
 
                                                 <div class="row align-items-center">
                                                     <div class="col-md-2">
-                                                        <img src="Products/<?php echo $row['image'] ?>" class="img-fluid" alt="Product Images" style="width:100px; height:100px;">
+                                                        <img src="Products/<?php echo $image ?>" class="img-fluid" alt="Product Images" style="width:100px; height:100px;">
                                                     </div>
                                                     <div class="col-md-2 d-flex justify-content-center">
                                                         <div>
-                                                            <p class="lead fw-normal mb-0"><?php echo $row['pname'] ?></p>
+                                                            <p class="lead fw-normal mb-0"><?php echo $pname ?></p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-1 d-flex justify-content-center">
                                                         <div>
-                                                            <p class="lead fw-normal mb-0"><?php echo $row['categories'] ?></p>
+                                                            <p class="lead fw-normal mb-0"><?php echo $categories ?></p>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-2 d-flex justify-content-center">
                                                         <div>
-                                                            <p class="lead fw-normal mb-0"><?php echo $row['pprice'] ?></p>
+                                                            <p class="lead fw-normal mb-0"><?php echo $price ?></p>
                                                         </div>
                                                     </div>
                                                     
@@ -308,12 +313,11 @@ if (isset($_POST['remove'])) {
                         if ($dbconnection->query($order_sql3) === TRUE) {
                             echo "<script>alert('Your Order Done.! Please wait for admin confirm order')</script>";
                             echo "<script>window.location = 'shop.php'</script>";
-                            foreach ($_SESSION['cart'] as $key => $value) {
-                                
+                            if (!empty($_SESSION['cart'])) :
+                                foreach ($_SESSION['cart'] as $key => $value) {
                                     unset($_SESSION['cart'][$key]);
-  
-                            }
-                                
+                                }
+                            endif;      
                         } else {
                             echo "Error Confim Payment: " . $dbconnection->error;
                         }

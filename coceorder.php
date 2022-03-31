@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src ="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css files/productdelete.css">
+    <link rel="stylesheet" type="text/css" href="css files/coceorder.css">
 
 </head>
 <body>
@@ -36,15 +36,15 @@
                 <img src="images/customer.png" style="width:30px; height:30px">
             </i> CUSTOMERS </a>
 
-            <a href="order.php" class="dashboard-nav-item"><i class="fas fa-user">
+            <a href="order.php" class="dashboard-nav-item active"><i class="fas fa-user">
                 <img src="images/order.png" style="width:30px; height:30px">
             </i> ORDERS </a>
 
-            <a href="admin.php" class="dashboard-nav-item"><i class="fas fa-user">
+            <a href="admin.php" class="dashboard-nav-item "><i class="fas fa-user">
                 <img src="images/admin.png" style="width:30px; height:30px">
             </i> ADMIN </a>
 
-            <a href="admin_payment.php" class="dashboard-nav-item active"><i class="fas fa-user">
+            <a href="admin_payment.php" class="dashboard-nav-item"><i class="fas fa-user">
                 <img src="images/payment.png" style="width:30px; height:30px">
             </i> PAYMENT </a>
 
@@ -122,17 +122,13 @@
                         echo "<input class='form-control' type='text' name='uaddress' value='".$row['remark']."'>";
                         echo "</div>";
                         echo "<div class='text-center'>";
-                        echo "<button class='btn btn-success btn-block' type='submit' name='confirm'>Confirm Payment</button>";
-                        echo "</div>";
-                        echo "<div class='text-center'>";
-                        echo "<button class='btn btn-success btn-block' type='submit' name='cancel'>Cancel Order</button>";
+                        echo "<button class='btn' type='submit' name='confirm'>CONFIRM</button>";
+                        echo "<button class='btn' type='submit' name='cancel'>CANCEL</button>";
                         echo "</div>";
                         echo "</form>";
                         }
                     }
                 ?>
-
-
                     </div>
                 </div>
             </div>

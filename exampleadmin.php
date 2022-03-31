@@ -1,9 +1,11 @@
 <?php
 
-for($i = 1; $i < 12; $i++) {
-    $dofm = cal_days_in_month(CAL_GREGORIAN, $i, 2022);
-	echo "$dofm <br>";
-	
+include('connection.php');
+$viewquery = "SELECT * FROM orders ORDER BY oid DESC LIMIT 1";
+foreach ($dbconnection->query($viewquery) as $row){
+    $id = $row['oid'];
+    echo $id;
+    $OID = $id +1;
+    echo $OID;
 }
-
 ?>

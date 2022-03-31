@@ -11,6 +11,7 @@ if (isset($_POST['remove'])) {
             if ($value["pid"] == $_GET['id']) {
                 unset($_SESSION['cart'][$key]);
                 echo "<script>alert('Product has been Removed...!')</script>";
+                header('location:cart.php');
             }
         }
     }
@@ -84,7 +85,7 @@ if (isset($_POST['remove'])) {
                             $qty = $_SESSION['cart'][$id]['qty'];
                             if (isset($_POST['quantity'.$pid])){
                               $qty = $_POST['quantity'.$pid];
-                              echo $qty;
+                            //   echo $qty;
                               $_SESSION['cart'][$id]['qty'] = $qty;
                             }
                             $item_sql = "SELECT * from product where pid=$pid";
@@ -93,10 +94,40 @@ if (isset($_POST['remove'])) {
                             
                         while ($row = mysqli_fetch_assoc($item_result)) {
                                     $price = $row['pprice'];
+                                    $total1 = $price*$qty;
                                     $total = $total + $price*$qty;
                                     $total_amount = $total + 500;
                                     
-
+                                    
+                                     if (isset($_POST['confirm'])) {
+                                                        
+                                    //     $uid = $_SESSION['uid'];
+                                    //     $odate =  date("Y/m/d");
+                                    //     $order_sql = "INSERT INTO orders (odate,uid) VALUES (\"$odate\",\"$uid\")";
+                                    //     $dbconnection->query($order_sql);
+                                    //     $OID = mysqli_insert_id($dbconnection);
+                                    $viewquery = "SELECT * FROM orders ORDER BY oid DESC LIMIT 1";
+                                    foreach ($dbconnection->query($viewquery) as $row){
+                                        $id = $row['oid'];
+                                        $oID = $id +1;
+                                        // echo $id;
+                                    }
+                                        //  $OID = mysqli_insert_id($dbconnection); 
+                                         $order_sql2 = "INSERT INTO order_line (oid,pid,qty,price) VALUES (\"$oID\",\"$pid\",\"$qty\",\"$total1\")";
+                                         $dbconnection->query($order_sql2);                        
+                
+                                    //     $tranid = $_POST['tranid'] ?? "";
+                                    //     $method = $_POST['ava'] ?? "";;
+                                    //     $order_sql3 = "INSERT INTO payment (oid,amount,uid,payment,tranid) VALUES (\"$OID\",\"$total_amount\",\"$uid\",\"$method\",\"$tranid\")";
+                                    //     if ($dbconnection->query($order_sql3) === TRUE) {
+                                    //         echo "<script>alert('Your Order Done.! Please wait for admin confirm order')</script>";
+                                    //         echo "<script>window.location = 'shop.php'</script>";
+                                    //         session_destroy();
+                                    //     } else {
+                                    //         echo "Error Confim Payment: " . $dbconnection->error;
+                                    //     }
+                                     }
+                                
                     ?>
                                     <form action='cart.php?action=remove&id=<?php echo $row['pid'] ?>&cart.php#checkout' method="post">
                                         <div class="card mb-4" id="cartresult">
@@ -246,7 +277,7 @@ if (isset($_POST['remove'])) {
                 </form>
                 <!--       </div> -->
 
-                <?php
+                    	<?php
                     if (isset($_POST['confirm'])) {
                                         
                         $uid = $_SESSION['uid'];
@@ -266,9 +297,10 @@ if (isset($_POST['remove'])) {
                         //     $stmt->execute();
                         // }
                           
-                            $order_sql2 = "INSERT INTO order_line (oid,pid,qty,total_amount) VALUES (\"$OID\",\"$pid\",\"$qty\",\"$price\")";
-                            $dbconnection->query($order_sql2);
-                        
+                        // $order_sql2 = "INSERT INTO order_line (oid,pid,qty,price) VALUES (\"$OID\",\"$pid\",\"$qty\",\"$price\")";
+                        // while ($row = mysqli_fetch_assoc($item_result)) {
+                        // $dbconnection->query($order_sql2);                        
+                        // }
 
                         $tranid = $_POST['tranid'] ?? "";
                         $method = $_POST['ava'] ?? "";;
@@ -276,7 +308,12 @@ if (isset($_POST['remove'])) {
                         if ($dbconnection->query($order_sql3) === TRUE) {
                             echo "<script>alert('Your Order Done.! Please wait for admin confirm order')</script>";
                             echo "<script>window.location = 'shop.php'</script>";
-                            session_destroy();
+                            foreach ($_SESSION['cart'] as $key => $value) {
+                                
+                                    unset($_SESSION['cart'][$key]);
+  
+                            }
+                                
                         } else {
                             echo "Error Confim Payment: " . $dbconnection->error;
                         }

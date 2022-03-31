@@ -93,10 +93,14 @@ include('header.php');
 
       <div class="filterDiv bestsell">
         <?php
-        $product = "SELECT pid, SUM(qty) AS TotalQuantity FROM `order_line` GROUP BY pid ORDER BY SUM(qty) DESC LIMIT 5;";
+        $product = "SELECT pid, SUM(qty) AS TotalQuantity FROM `order_line` GROUP BY pid ORDER BY SUM(qty) DESC LIMIT 5";
         $product_result = mysqli_query($dbconnection, $product);
         if (!empty($product_result)) {
           while ($col = mysqli_fetch_array($product_result)) {
+            $pid = $col['pid'];
+            $product1 = "SELECT * FROM product WHERE pid='$pid'";
+            foreach ($dbconnection->query($product1) as $col)
+            {
         ?>
             <div class="card" style="width:200px;">
               <img class="card-img-top" src="Products/<?php echo $col['image'] ?>" alt="shop products" style="width:100%;height:200px">
@@ -107,6 +111,7 @@ include('header.php');
               </div>
             </div>
         <?php
+            }
           }
         }
         ?>

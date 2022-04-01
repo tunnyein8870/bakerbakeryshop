@@ -1,6 +1,7 @@
 <?php
 include('connection.php');
 include('header.php');
+$qty = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +83,12 @@ include('header.php');
               <div class="card-body" style="height:130px">
                 <h4 class="cardtitle"><b><?php echo $col['pname'] ?></b></h4>
                 <p style="color:#6b5756;"><?php echo $col['pprice'] ?>Ks</p>
-                <a href="#" class="btn btn-primary">ADD TO CART</a>
+                <form action="search.php" method="post">
+                  <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
+                  <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
+                  <input type='hidden' style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+                </form>
+
               </div>
             </div>
         <?php
@@ -107,7 +113,12 @@ include('header.php');
               <div class="card-body" style="height:130px">
                 <h4 class="cardtitle"><b><?php echo $col['pname'] ?></b></h4>
                 <p style="color:#6b5756;"><?php echo $col['pprice'] ?>Ks</p>
-                <a href="#" class="btn btn-primary">ADD TO CART</a>
+                <form action="search.php" method="post">
+                  <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
+                  <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
+                  <input type='hidden' style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+                </form>
+
               </div>
             </div>
         <?php
@@ -129,7 +140,11 @@ include('header.php');
               <div class="card-body" style="height:130px">
                 <h4 class="cardtitle"><b><?php echo $col['pname'] ?></b></h4>
                 <p style="color:#6b5756;"><?php echo $col['pprice'] ?>Ks</p>
-                <a href="#" class="btn btn-primary">ADD TO CART</a>
+                <form action="search.php" method="post">
+                  <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
+                  <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
+                  <input type='hidden' style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+                </form>
               </div>
             </div>
         <?php
@@ -150,7 +165,12 @@ include('header.php');
               <div class="card-body" style="height:130px">
                 <h4 class="cardtitle"><b><?php echo $col['pname'] ?></b></h4>
                 <p style="color:#6b5756;"><?php echo $col['pprice'] ?>Ks</p>
-                <a href="#" class="btn btn-primary">ADD TO CART</a>
+                <form action="search.php" method="post">
+                  <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
+                  <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
+                  <input type='hidden' style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+                </form>
+
               </div>
             </div>
         <?php
@@ -171,7 +191,12 @@ include('header.php');
               <div class="card-body" style="height:130px">
                 <h4 class="cardtitle"><b><?php echo $col['pname'] ?></b></h4>
                 <p style="color:#6b5756;"><?php echo $col['pprice'] ?>Ks</p>
-                <a href="#" class="btn btn-primary">ADD TO CART</a>
+                <form action="search.php" method="post">
+                  <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
+                  <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
+                  <input type='hidden' style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+                </form>
+
               </div>
             </div>
         <?php
@@ -192,7 +217,11 @@ include('header.php');
               <div class="card-body" style="height:170px">
                 <h4 class="cardtitle"><b><?php echo $col['pname'] ?></b></h4>
                 <p style="color:#6b5756;"><?php echo $col['pprice'] ?>Ks</p>
-                <a href="#" class="btn btn-primary">ADD TO CART</a>
+                <form action="search.php" method="post">
+                  <input type="hidden" name="id" value="<?php echo $col['pid'] ?>">
+                  <input type="submit" name="ac" data-text="Add To Cart" value="Add To Cart" class="btn btn-primary">
+                  <input type='hidden' style='width:40px; height:20px;' name='qty' value=<?php echo $qty ?>>
+                </form>
               </div>
             </div>
         <?php

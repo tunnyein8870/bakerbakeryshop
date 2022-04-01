@@ -109,7 +109,7 @@
                         </tbody>
                     </table>
                 </div>
-                        <button class="btn"  data-title="Modify" data-toggle="modal" data-target="#modify" onclick="location.href='productmod.php';"> MODIFY</button>
+                        <button class="btn"  data-title="Modify" data-toggle="modal" data-target="#modify" onclick="location.href='productmod.php';"> INSERT/ UPDATE</button>
                         <button class="btn "  data-title="Delete" data-toggle="modal" data-target="#delete" onclick="location.href='productdelete.php';"> DELETE</button>
                     </div>
                 </div>

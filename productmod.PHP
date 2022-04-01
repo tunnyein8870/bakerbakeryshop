@@ -7,14 +7,17 @@
                     $pc = $_POST['pcat'];
                     $pp = $_POST['ppri'];
                     $pin = $_POST['ping'];
-                    $pi = $_POST['pimg'];
+                    $uploads_dir = "Products";
+                    $pi = $_FILES['pimg']['name'];
+                    move_uploaded_file($_FILES['pimg']['tmp_name'], "$uploads_dir/$pi");
+                    //$pi = $_POST['pimg'];
                     $av = $_POST['ava'];
                    
                     $sql = "INSERT INTO product (pname,categories,pingredient,pprice,availability,image) VALUES ('$pn','$pc','$pin','$pp','$av','$pi')";
 
                     if($dbconnection->query($sql) === TRUE) {
-                        echo "<script>alert('Data Insert Successfully.!')</script>";
-                      echo "<script>window.location = 'products.php'</script>";
+                        //echo "<script>alert('Data Insert Successfully.!')</script>";
+                      //echo "<script>window.location = 'products.php'</script>";
                       } 
                       else {
                            echo "Error Updating Data: " . $dbconnection->error;
@@ -97,7 +100,7 @@
                     <h5 class="card-title m-b-0">Product Modification</h5>
                 </div>
 
-                <form class="insertform" action="" method="post">
+                <form class="insertform" action="" method="post" enctype='multipart/form-data'>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Product Name</label>
                         <input class="form-control" type="text" name="pname" placeholder="Product Name">
@@ -128,7 +131,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1">Product Image</label>
-                        <input class="form-control" type="text" name="pimg" placeholder="Enter Product Image">
+                        <input class="form-control" type="file" name="pimg" placeholder="Enter Product Image">
                     </div>
 
                 <div class="text-center">

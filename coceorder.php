@@ -172,7 +172,7 @@
         $admpassword = $_POST['upassword'];
         $admphone = $_POST['uphone'];
         $admcity = $_POST['ucity'];
-        $admaddress = "Cancel";
+        $admaddress = "Cancel by Admin";
         
         $sql="UPDATE payment SET oid=\"$admname\", amount=\"$admemail\", uid=\"$admpassword\", payment=\"$admphone\", tranid=\"$admcity\", remark=\"$admaddress\" Where payid=\"$admid\"";   
         if($dbconnection->query($sql) === TRUE) {

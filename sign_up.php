@@ -29,9 +29,10 @@ if (isset($_POST['signup'])) {
       $upassword = $_POST['upassword'];
       $uphone = $_POST['uphone'];
       $ucity = $_POST['ucity'];
+      $utownship = $_POST['utownship'];
       $uaddress = $_POST['uaddress'];
 
-      $sql = "INSERT INTO user (uname,uemail,upassword,uphone,ucity,uaddress) VALUES ('$uname','$uemail','$upassword','$uphone','$ucity','$uaddress')";
+      $sql = "INSERT INTO user (uname,uemail,upassword,uphone,ucity,utownship,uaddress) VALUES ('$uname','$uemail','$upassword','$uphone','$ucity','$utownship','$uaddress')";
 
       if (mysqli_query($dbconnection, $sql)) {
         echo "<script>
@@ -80,11 +81,84 @@ if (isset($_POST['signup'])) {
         <div class="form-group">
           <input class="form-control" type="text" name="uphone" placeholder="Phone No" required>
         </div>
+
+        <script type="text/javascript">
+          var citiesByState = {
+            Yangon: ["Tamwe", "Thingangyun", "Kyauktada", "Ahlone", "Botahtung", "North Dagon", "Sanchaung", "Lanmadaw"],
+            Mandalay: ["Aungmyethazan", "Chanayethazan ", "Chanmyathazi", "Maha Aungmye", "Pyigyidagun", "Amarapura ", "Patheingyi"],
+            Naypyidaw: ["Ottarathiri", "Pobbathiri", "Dekkhinathiri"],
+            Mawlamyine: [ "Kyaikmaraw", "Chaungzon", "Thanbyuzayat", "Mudon", "Ye"],
+            Bago: ["Daik-U", "Kawa", "Nyaunglebin", "Shwegyin", "Kyautaga"],
+            Taunggyi: ["Lawksawk", "Nyaungshwe", "Pekon"],
+            Pathein: ["Kangyidaunt", "Kyaunggon", "Kyonpyaw", "Ngapudaw", "Thabaung"],
+            Myeik: ["Karathuri", "Khamaukgyi", "Pyigyimandaing"],
+            // Mogok: ["Mogok"],
+            // Magway: ["kochi", "Kanpur"],
+            // Sagaing: ["kochi", "Kanpur"],
+            // Aunglan: ["kochi", "Kanpur"],
+            // Lashio: ["kochi", "Kanpur"],
+            // PyinOoLwin: ["kochi", "Kanpur"],
+            // Kalay: ["kochi", "Kanpur"],
+            // Myawaddy: ["kochi", "Kanpur"],
+            // Taikkyi: ["kochi", "Kanpur"],
+            // HpaAn: ["kochi", "Kanpur"],
+            // Kalaw: ["kochi", "Kanpur"]
+          }
+
+          function makeSubmenu(value) {
+            if (value.length == 0) document.getElementById("townshipSelect").innerHTML = "<option></option>";
+            else {
+              var citiesOptions = "";
+              for (cityId in citiesByState[value]) {
+                citiesOptions += "<option>" + citiesByState[value][cityId] + "</option>";
+              }
+              document.getElementById("townshipSelect").innerHTML = citiesOptions;
+            }
+          }
+
+          function displaySelected() {
+            var country = document.getElementById("citySelect").value;
+            var city = document.getElementById("townshipSelect").value;
+            alert(country + "\n" + city);
+          }
+
+          function resetSelection() {
+            document.getElementById("citySelect").selectedIndex = 0;
+            document.getElementById("townshipSelect").selectedIndex = 0;
+          }
+        </script>
         <div class="form-group">
-          <input class="form-control" type="text" name="ucity" placeholder="City">
+          <select name="ucity" id="citySelect" size="1" onchange="makeSubmenu(this.value)">
+            <option value="" disabled selected>Choose City</option>
+            <option>Yangon</option>
+            <option>Mandalay</option>
+            <option>Naypyidaw</option>
+            <option>Mawlamyine</option>
+            <option>Bago</option>
+            <option>Taunggyi</option>
+            <option>Pathein</option>
+            <option>Myeik</option>
+            <!-- <option>Mogok</option>
+            <option>Magway</option>
+            <option>Sagaing</option>
+            <option>Aunglan</option>
+            <option>Lashio</option>
+            <option>PyinOoLwin</option>
+            <option>Kalay</option>
+            <option>Myawaddy</option>
+            <option>Taikkyi</option>
+            <option>HpaAn</option>
+            <option>Kalaw</option> -->
+
+          </select>
+          <select name="utownship" id="townshipSelect" size="1">
+            <option value="" disabled selected>Choose Township</option>
+            <option></option>
+          </select>
+          <!-- <input class="form-control" type="text" name="ucity" placeholder="City"> -->
         </div>
         <div class="form-group">
-          <input class="form-control" type="text" name="uaddress" placeholder="Address">
+          <input class="form-control" id="addr" type="text" name="uaddress" placeholder="Address">
         </div>
         <div class="form-group">
           <div class="form-check">
@@ -102,6 +176,8 @@ if (isset($_POST['signup'])) {
       </form>
     </div>
   </div>
+
+  <!-- city and its state select -->
 
   <!-- start of contact us -->
   <div id="contact">

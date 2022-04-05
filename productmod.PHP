@@ -143,7 +143,7 @@ if (isset($_POST['insert'])) {
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-default " name="insert">INSERT</button>
-                                    <button type="submit" class="btn btn-default" name="update" onclick="location.href='productupdate.php';">UPDATE</button>
+                                    <button type="submit" class="btn btn-default" name="update"><a style="color:white;" href=productupdate.php>UPDATE</a></button>
                                 </div>
                             </form>
 

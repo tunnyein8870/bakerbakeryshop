@@ -80,7 +80,7 @@ if (isset($_POST['remove'])) {
                     </div>
                     <?php
                     if (isset($_SESSION['cart'])) {
-
+                        // var_dump($_SESSION['cart'])
                         foreach ($_SESSION['cart'] as $id => $array){
                             $pid = $_SESSION['cart'][$id]['pid'];
                             $qty = $_SESSION['cart'][$id]['qty'];
@@ -105,32 +105,13 @@ if (isset($_POST['remove'])) {
                                     
                                     
                                      if (isset($_POST['confirm'])) {
-                                                        
-                                    //     $uid = $_SESSION['uid'];
-                                    //     $odate =  date("Y/m/d");
-                                    //     $order_sql = "INSERT INTO orders (odate,uid) VALUES (\"$odate\",\"$uid\")";
-                                    //     $dbconnection->query($order_sql);
-                                    //     $OID = mysqli_insert_id($dbconnection);
                                     $viewquery = "SELECT * FROM orders ORDER BY oid DESC LIMIT 1";
                                     foreach ($dbconnection->query($viewquery) as $row){
                                         $id = $row['oid'];
                                         $oID = $id +1;
-                                        // echo $id;
                                     }
-                                        //  $OID = mysqli_insert_id($dbconnection); 
                                          $order_sql2 = "INSERT INTO order_line (oid,pid,qty,price) VALUES (\"$oID\",\"$pid\",\"$qty\",\"$total1\")";
                                          $dbconnection->query($order_sql2);                        
-                
-                                    //     $tranid = $_POST['tranid'] ?? "";
-                                    //     $method = $_POST['ava'] ?? "";;
-                                    //     $order_sql3 = "INSERT INTO payment (oid,amount,uid,payment,tranid) VALUES (\"$OID\",\"$total_amount\",\"$uid\",\"$method\",\"$tranid\")";
-                                    //     if ($dbconnection->query($order_sql3) === TRUE) {
-                                    //         echo "<script>alert('Your Order Done.! Please wait for admin confirm order')</script>";
-                                    //         echo "<script>window.location = 'shop.php'</script>";
-                                    //         session_destroy();
-                                    //     } else {
-                                    //         echo "Error Confim Payment: " . $dbconnection->error;
-                                    //     }
                                      }
                                 
                     ?>
